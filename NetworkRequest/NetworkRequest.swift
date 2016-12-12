@@ -43,8 +43,8 @@ public protocol NetworkRequest {
 	/// Will transform given data to requested type of response.
 	var responseHandler: (Data) throws -> ResponseType { get }
 	/// Will transform given data to requested array of type of responses.
-	var arrayResponseHandler: (Data, Progress) throws -> [ResponseType] { get }
-	var progress: Progress { get }
+	var arrayResponseHandler: (Data, Progress?) throws -> [ResponseType] { get }
+	var progress: Progress? { get }
 	
 	// Optional
 	var baseURL: String { get }
