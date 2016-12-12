@@ -23,7 +23,8 @@ public enum NetworkRequestError: Error {
     case noNetworkConnection
 }
 
-public typealias Progress = ((String) -> ())?
+/// Progress use to track current array response state.
+public typealias Progress = (String) -> ()
 
 /// A ignorable result.
 /// Will ignore the result server responsed.
@@ -37,7 +38,6 @@ public protocol NetworkRequest {
 	
 	// Required
 	/// End Point.
-	/// Must start with a /.
 	/// e.g. /cards/:id/dislike
 	var endpoint: String { get }
 	/// Will transform given data to requested type of response.
@@ -74,17 +74,17 @@ public extension NetworkRequest {
     public var headers: [String : String] { return [:] }
 	
 	public var networkClient: NetworkClientType { return NetworkClient() }
-	public var progress: Progress { return nil }
+	public var progress: Progress? { return nil }
 }
 
 extension NetworkRequest where ResponseType: JSONDecodable {
 	public var responseHandler: (Data) throws -> ResponseType { return jsonResponseHandler }
-	public var arrayResponseHandler: (Data, Progress) throws -> [ResponseType] { return jsonArrayResponseHandler }
+	public var arrayResponseHandler: (Data, Progress?) throws -> [ResponseType] { return jsonArrayResponseHandler }
 }
 
 extension NetworkRequest where ResponseType == IgnorableResult {
 	public var responseHandler: (Data) throws -> ResponseType { return ignorableResponseHandler }
-	public var arrayResponseHandler: (Data, Progress) throws -> [ResponseType] { return ignorableArrayResponseHandler }
+	public var arrayResponseHandler: (Data, Progress?) throws -> [ResponseType] { return ignorableArrayResponseHandler }
 }
 
 private func jsonResponseHandler<Response: JSONDecodable>(_ data: Data) throws -> Response {
@@ -96,7 +96,7 @@ private func jsonResponseHandler<Response: JSONDecodable>(_ data: Data) throws -
     }
 }
 
-private func jsonArrayResponseHandler<Response: JSONDecodable>(_ data: Data, progress: Progress) throws -> [Response] {
+private func jsonArrayResponseHandler<Response: JSONDecodable>(_ data: Data, progress: Progress?) throws -> [Response] {
 	let json = JSON(data: data)
 	guard json.type == Type.array else { throw JSONDecodableError.parseError }
 	var responses: [Response] = []
@@ -113,6 +113,6 @@ private func ignorableResponseHandler(_ data: Data) throws -> IgnorableResult {
 	return IgnorableResult()
 }
 
-private func ignorableArrayResponseHandler(_ data: Data, progress: Progress) throws -> [IgnorableResult] {
+private func ignorableArrayResponseHandler(_ data: Data, progress: Progress?) throws -> [IgnorableResult] {
 	return []
 }
