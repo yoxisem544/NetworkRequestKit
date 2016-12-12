@@ -133,7 +133,7 @@ In many situation, the response is returned in a json array. What you need to do
 
 ```swift
 final public class FetchUsers : NetworkRequest {
-	public typealias ResponseType = IgnorableRequslt
+	public typealias ResponseType = User
 	
 	public var endPoint: String { return "/users" }
 	public var method: HTTPMethod { return .get }
