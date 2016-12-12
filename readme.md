@@ -29,7 +29,7 @@ public struct User {
 ```
 
 #### Conform to JSONDecodable protocol
-We will talk about this protocol and why we should conform to this protocol later. In order to comform to JSONDecodable protocol, you will have to implement `init(decodeUsing json: JSON)` init method.
+We will talk about this protocol and why we should conform to this protocol later. In order to conform to JSONDecodable protocol, you will have to implement `init(decodeUsing json: JSON)` init method.
 
 ```swift
 extension User : JSONDecodable {
@@ -147,7 +147,7 @@ Like uploading a large image to server, multipart request is often used in Web d
 
 `MultipartNetworkRequest` and `MultipartNetworkClient` can help you to do this work in a easy way.
 
-`MultipartNetworkRequest` conforms to `NetworkRequest`, so all benefits you got in `NetworkRequest` are also available here. But there are something you need to implement to comform to a `MultipartNetworkRequest` protocl.
+`MultipartNetworkRequest` conforms to `NetworkRequest`, so all benefits you got in `NetworkRequest` are also available here. But there are something you need to implement to conform to a `MultipartNetworkRequest` protocl.
 
 You will need to implement these getters when comforming to `MultipartNetworkRequest ` protocol:
 
@@ -176,7 +176,7 @@ final public class UploadTask : MultipartNetworkRequest {
 	public var method: HTTPMethod { return .post }
 	public var encoding: ParameterEncoding { return URLEncoding.default }
 	    
-	public var multipartUploadData: Data { return  }
+	public var multipartUploadData: Data { return data }
 	public var multipartUploadName: String { return "new_avatar" }
 	public var multipartUploadFileName: String { return "file" }
 	public var multipartUploadMimeType: String { return "image/jpeg" }
@@ -184,13 +184,66 @@ final public class UploadTask : MultipartNetworkRequest {
 	private var data: Data!
 	func perform(avatarData: Data) -> Promise<ResponseType> {
 		self.data = avatarData
-	   return networkClient.performUploadRequest(self).then(execute: responseHandler)
+		return networkClient.performUploadRequest(self).then(execute: responseHandler)
+	}
 }
+```
+
+#### Error handling
+There are some predefined errors I often use in my project. 
+1. If there is something wrong when parsing data, will return `.invalidData` error.
+2. If there is something wrong while making the api call, will return `.apiUnaccepatable` error. Error information is attached.
+3. If there is no network, will return `.unknownError` error. You should fire request everytime nomatter network is available or not. This is recommanded in Alamofire's document. If you want to track the network state, check Alamofire's reachability document.
+
+```swift
+/// NetworkRequestError
+///
+/// - invalidData:         Fail to parse data from response.
+/// - apiUnacceptable:     Fail to connect with api. Error information attached.
+/// - unknownError:        Unknown error.
+/// - noNetworkConnection: no network connection.
+public enum NetworkRequestError: Error {
+	case invalidData
+    case apiUnacceptable(errorInformation: APIUnacceptableErrorInformation)
+	case unknownError
+    case noNetworkConnection
 }
+```
+
+Handling an error is easy. `APIUnacceptableErrorInformation` contains the information you may need to handle an error. `error` is Alamofire's returned error. `statusCode` is something like 404, 401. `reponseBody` contains full information returned by server. `errorCode` is where I get the excat error code from server. You can define it or remove it by yourself.
+
+```swift
+public struct APIUnacceptableErrorInformation {
+    let error: Error
+    let statusCode: Int?
+    let responseBody: JSON
+    let errorCode: String?
+}
+```
+
+You can handle the error message using `switch` or `if-let`.
+
+```swift
+let fetchUser = FetchUser()
+fetchUser.perform().catch({ e in 
+	// if-let statement
+	if case let apiUnacceptable(errorInformation: errorInfo) = e {
+		print(errorInfo)
+	}
+	
+	// switch statement
+	switch(e) {
+	case let apiUnacceptable(errorInformation: errorInfo):
+		print(errorInfo)
+	default:
+		break
+	}
+}) 
 ```
 
 #### Things to know
 1. get method with parameters will need to change the encoding to URLEnconding.default, or it's gonna fail with no reason. This maybe Alamofire's bug or is just a RESTful api rule.
+2. Model conform to `JSONDecodable` can throw. Any error happened in responseHandler will be transform into `NetworkRequestError.invalidData` type error.
 
 
 

@@ -24,6 +24,6 @@ final public class UploadTask : MultipartNetworkRequest {
     public var multipartUploadMimeType: String { return "" }
     
     func perform() -> Promise<ResponseType> {
-        return networkClient.performUploadRequest(self).then(execute: responseHandler)
+        return networkClient.performMultipartRequest(self).then(execute: responseHandler)
     }
 }
