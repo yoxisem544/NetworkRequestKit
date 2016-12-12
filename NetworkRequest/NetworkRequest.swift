@@ -103,9 +103,8 @@ private func jsonArrayResponseHandler<Response: JSONDecodable>(_ data: Data, pro
 	let courseCount = json.count
 	for (key, json) in json {
         DispatchQueue.main.async { progress?("\(key)/\(courseCount)") }
-        if let response = try? Response(decodeUsing: json) {
-            responses.append(response)
-        }
+        guard let response = (try? Response(decodeUsing: json)) else { continue }
+        responses.append(response)
 	}
 	return responses
 }
