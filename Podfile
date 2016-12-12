@@ -6,7 +6,10 @@ target 'NetworkRequest' do
   use_frameworks!
 
   # Pods for NetworkRequest
-
+  pod 'PromiseKit'
+  pod 'SwiftyJSON'
+  pod 'Alamofire'
+  
   target 'NetworkRequestTests' do
     inherit! :search_paths
     # Pods for testing
