@@ -13,7 +13,6 @@ import PromiseKit
 
 public protocol NetworkClientType {
 	func performRequest<Request: NetworkRequest>(_ networkRequest: Request) -> Promise<Data>
-	func performArrayRequest<Request: NetworkRequest>(_ networkRequest: Request) -> Promise<(Data, Progress?)>
 }
 
 public struct NetworkClient: NetworkClientType {
@@ -42,12 +41,6 @@ public struct NetworkClient: NetworkClientType {
 		}
 		
 		return promise
-	}
-	
-	public func performArrayRequest<Request : NetworkRequest>(_ networkRequest: Request) -> Promise<(Data, Progress?)> {
-		return performRequest(networkRequest).then { data in
-			return Promise(value: (data, networkRequest.progress))
-		}
 	}
 	
 }

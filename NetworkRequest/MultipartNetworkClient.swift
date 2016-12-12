@@ -12,12 +12,12 @@ import Alamofire
 import SwiftyJSON
 
 public protocol MultipartNetworkClientType {
-    func performUploadRequest<Request: MultipartNetworkRequest>(_ networkRequest: Request) -> Promise<Data>
+    func performMultipartRequest<Request: MultipartNetworkRequest>(_ networkRequest: Request) -> Promise<Data>
 }
 
 public struct MultipartNetworkClient : MultipartNetworkClientType {
     
-    public func performUploadRequest<Request : MultipartNetworkRequest>(_ networkRequest: Request) -> Promise<Data> {
+    public func performMultipartRequest<Request : MultipartNetworkRequest>(_ networkRequest: Request) -> Promise<Data> {
         
         let (promise, fulfill, reject) = Promise<Data>.pending()
         
