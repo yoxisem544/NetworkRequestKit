@@ -16,10 +16,8 @@ public class AlamofireErrorHandler {
         if (error as NSError).code == -1009 {
             return NetworkRequestError.noNetworkConnection
         } else {
-            let responseBody: JSON? = (data != nil ? JSON(data: data!) : nil)
-            let statusCode = urlResponse?.statusCode
-            let errorCode = responseBody?["error_code"].string
-            let e = NetworkRequestError.apiUnacceptable(error: error, statusCode: statusCode, responseBody: responseBody, errorCode: errorCode)
+            let errorInfo = APIUnacceptableErrorInformation(error: error, data: data, urlResponse: urlResponse)
+            let e = NetworkRequestError.apiUnacceptable(errorInformation: errorInfo)
             return e as Error
         }
     }

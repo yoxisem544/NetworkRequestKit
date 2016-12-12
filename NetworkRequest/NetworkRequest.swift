@@ -18,7 +18,7 @@ import SwiftyJSON
 /// - noNetworkConnection: no network connection.
 public enum NetworkRequestError: Error {
 	case invalidData
-    case apiUnacceptable(error: Error, statusCode: Int?, responseBody: JSON?, errorCode: String?)
+    case apiUnacceptable(errorInformation: APIUnacceptableErrorInformation)
 	case unknownError
     case noNetworkConnection
 }

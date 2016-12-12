@@ -21,6 +21,7 @@
 		63E8C3CC1DFEA57200AE5727 /* MultipartNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E8C3CB1DFEA57200AE5727 /* MultipartNetworkClient.swift */; };
 		63E8C3CE1DFEA65800AE5727 /* AlamofireErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E8C3CD1DFEA65800AE5727 /* AlamofireErrorHandler.swift */; };
 		63E8C3D01DFEA7EB00AE5727 /* UploadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E8C3CF1DFEA7EB00AE5727 /* UploadTask.swift */; };
+		63E8C3D21DFEAC1F00AE5727 /* APIUnacceptableErrorInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E8C3D11DFEAC1F00AE5727 /* APIUnacceptableErrorInformation.swift */; };
 		66D3C9246FC0967E35AA12C1 /* Pods_NetworkRequestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ED1215AA98FBC55DB9E627E /* Pods_NetworkRequestTests.framework */; };
 		9FC49379706933C5A189F616 /* Pods_NetworkRequestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E16482CF25967F325BAA70E9 /* Pods_NetworkRequestUITests.framework */; };
 		B77D3B64CEF82CB9D7F2BDC0 /* Pods_NetworkRequest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D0A6F23C19044893B364E77 /* Pods_NetworkRequest.framework */; };
@@ -68,6 +69,7 @@
 		63E8C3CB1DFEA57200AE5727 /* MultipartNetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipartNetworkClient.swift; sourceTree = "<group>"; };
 		63E8C3CD1DFEA65800AE5727 /* AlamofireErrorHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireErrorHandler.swift; sourceTree = "<group>"; };
 		63E8C3CF1DFEA7EB00AE5727 /* UploadTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadTask.swift; sourceTree = "<group>"; };
+		63E8C3D11DFEAC1F00AE5727 /* APIUnacceptableErrorInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIUnacceptableErrorInformation.swift; sourceTree = "<group>"; };
 		B4A228E050204A967690074F /* Pods-NetworkRequestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkRequestUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NetworkRequestUITests/Pods-NetworkRequestUITests.release.xcconfig"; sourceTree = "<group>"; };
 		C3EE777B8A4E4ABBA60981BD /* Pods-NetworkRequestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkRequestTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NetworkRequestTests/Pods-NetworkRequestTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E16482CF25967F325BAA70E9 /* Pods_NetworkRequestUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NetworkRequestUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,6 +168,7 @@
 				63E8C3BF1DFE9ED800AE5727 /* NetworkClient.swift */,
 				63E8C3CB1DFEA57200AE5727 /* MultipartNetworkClient.swift */,
 				63E8C3CD1DFEA65800AE5727 /* AlamofireErrorHandler.swift */,
+				63E8C3D11DFEAC1F00AE5727 /* APIUnacceptableErrorInformation.swift */,
 				63E8C3C01DFE9ED800AE5727 /* JSONDecodable.swift */,
 			);
 			name = Networking;
@@ -484,6 +487,7 @@
 				63E8C3911DFE9E2800AE5727 /* AppDelegate.swift in Sources */,
 				63E8C3C21DFE9ED800AE5727 /* NetworkClient.swift in Sources */,
 				63E8C3CE1DFEA65800AE5727 /* AlamofireErrorHandler.swift in Sources */,
+				63E8C3D21DFEAC1F00AE5727 /* APIUnacceptableErrorInformation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
