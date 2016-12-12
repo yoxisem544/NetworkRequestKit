@@ -1,7 +1,7 @@
 # Network Request Kit
 This code is inspried by Austin Feight's [Evolution of a Network Layer](https://github.com/feighter09/Evolution-of-a-Network-Layer). I made it possiable to handle multipart request and deal with response that is ignorable according to my situation. 
 
-There is a artical explain why should we wrap network request like this in chinese. We won't go too deep here.
+There is a [artical](https://github.com/yoxisem544/Network-Evolution-Practice) explain why should we wrap network request like this in chinese. We won't go too deep here. If you don't understand what we are doing here. I sugguest you to read this [artical](https://github.com/yoxisem544/Network-Evolution-Practice) first or [Evolution of A Networking Layer](https://medium.com/@austinfeight/evolution-of-a-networking-layer-c395017188b3#.pkla1nafd) for a english version.
 
 ## Requirement
 - swift 3.0 or above
@@ -9,12 +9,14 @@ There is a artical explain why should we wrap network request like this in chine
 - iOS 9 or above
 
 ## Dependency
-- SwiftyJSON
-- Alamofire 4.x
-- PromiseKit
+- [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)
+- [Alamofire](https://github.com/Alamofire/Alamofire) 4.x
+- [PromiseKit](https://github.com/mxcl/PromiseKit)
 
 ## Installation
-need to put it onto cocoapods
+Drag the code in source folder into your project.
+todo: need to put it onto cocoapods
+
 
 ## How to use it
 ### First Look at NetworkRequest
@@ -29,7 +31,7 @@ public struct User {
 ```
 
 #### Conform to JSONDecodable protocol
-We will talk about this protocol and why we should conform to this protocol later. In order to conform to JSONDecodable protocol, you will have to implement `init(decodeUsing json: JSON)` init method.
+In order to conform to JSONDecodable protocol, you will have to implement `init(decodeUsing json: JSON)` init method.
 
 ```swift
 extension User : JSONDecodable {
@@ -244,6 +246,10 @@ fetchUser.perform().catch({ e in
 #### Things to know
 1. get method with parameters will need to change the encoding to URLEnconding.default, or it's gonna fail with no reason. This maybe Alamofire's bug or is just a RESTful api rule.
 2. Model conform to `JSONDecodable` can throw. Any error happened in responseHandler will be transform into `NetworkRequestError.invalidData` type error.
+3. If you use OAuth 2.0, you can add your access token inside `NetworkRequest` extension.
+4. Remember to set your base url, this url maybe an ip or a url to your server.
+5. endPoint doesn't have to start with a /. I already handle this for you :). 
+6. `arrayResonseHandler` will try to parse json into array, doesn't mean parsing work is fine, double check if you got an empty array. Will throw is json is not type of array.
 
 
 
