@@ -249,7 +249,7 @@ fetchUser.perform().catch({ e in
 3. If you use OAuth 2.0, you can add your access token inside `NetworkRequest` extension.
 4. Remember to set your base url, this url maybe an ip or a url to your server.
 5. endPoint doesn't have to start with a /. I already handle this for you :). 
-6. `arrayResonseHandler` will try to parse json into array, doesn't mean parsing work is fine, double check if you got an empty array. Will throw is json is not type of array.
+6. `arrayResonseHandler` will try to parse json into array, doesn't mean parsing work is fine, double check if you got an empty array. Will throw if json is not type of array.
 
 
 
