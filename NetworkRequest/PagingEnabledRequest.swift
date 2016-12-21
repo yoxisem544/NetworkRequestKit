@@ -18,7 +18,7 @@ public protocol PagingEnabledRequest {
 
 extension PagingEnabledRequest {
     
-    var perPage: Int { return 25 }
+    public var perPage: Int { return 25 }
     
     func checkHasNextPage<Response>(results: [Response]) -> Promise<(results: [Response], nextPage: Int?)> {
         if results.count < perPage {

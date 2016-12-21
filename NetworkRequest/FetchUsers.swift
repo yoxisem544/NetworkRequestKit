@@ -18,8 +18,9 @@ final public class FetchUsers : NetworkRequest, PagingEnabledRequest {
     public var parameters: [String : Any]? { return ["page": page, "per_page": perPage] }
     
     public var page: Int = 1
-    public func perform(page: Int) {
-        networkClient.performRequest(self).then(execute: arrayResponseHandler)
+    public func perform(page: Int) -> Promise<(results: [ResponseType], nextPage: Int?)> {
+        self.page = page
+        return networkClient.performRequest(self).then(execute: arrayResponseHandler).then(execute: checkHasNextPage)
     }
     
 }

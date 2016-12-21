@@ -144,6 +144,28 @@ final public class FetchUsers : NetworkRequest {
 }
 ```
 
+#### Paging request
+Fetching a bunch of data form server is not always a go thing to do. It makes your user experience bad aslo lower the performance on server. So, this is why we need a paging.
+
+It will be like this, conform to `PagingEnabledRequest` protocol, then you have to specific which page are you on now. Execute response handler, then check if there is next page of data. Remember to track current page in your model or view controller.
+
+```swift
+final public class FetchUsers : NetworkRequest, PagingEnabledRequest {
+  public typealias ResponseType = IgnorableResult
+
+  public var endpoint: String { return "/users" }
+  public var method: HTTPMethod { return .get }
+  public var parameters: [String : Any]? { return ["page": page, "per_page": perPage] }
+
+  public var page: Int = 1
+  public func perform(page: Int) -> Promise<(results: [ResponseType], nextPage: Int?)> {
+  	self.page = page
+    return networkClient.performRequest(self).then(execute: arrayResponseHandler).then(execute: checkHasNextPage)
+  }
+    
+}
+```
+
 #### Multipart request
 Like uploading a large image to server, multipart request is often used in Web development. When it comes to iOS, it's not that easy. 
 
