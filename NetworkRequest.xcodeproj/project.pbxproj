@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6352D9611E0A7B7000DC39C2 /* PagingEnabledRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6352D9601E0A7B7000DC39C2 /* PagingEnabledRequest.swift */; };
 		63E8C3911DFE9E2800AE5727 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E8C3901DFE9E2800AE5727 /* AppDelegate.swift */; };
 		63E8C3931DFE9E2800AE5727 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E8C3921DFE9E2800AE5727 /* ViewController.swift */; };
 		63E8C3961DFE9E2800AE5727 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63E8C3941DFE9E2800AE5727 /* Main.storyboard */; };
@@ -49,6 +50,7 @@
 		4D0A6F23C19044893B364E77 /* Pods_NetworkRequest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NetworkRequest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52C886E1BDBFE822C73952F6 /* Pods-NetworkRequestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkRequestTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NetworkRequestTests/Pods-NetworkRequestTests.release.xcconfig"; sourceTree = "<group>"; };
 		5ED1215AA98FBC55DB9E627E /* Pods_NetworkRequestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NetworkRequestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6352D9601E0A7B7000DC39C2 /* PagingEnabledRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingEnabledRequest.swift; sourceTree = "<group>"; };
 		63E8C38D1DFE9E2800AE5727 /* NetworkRequest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetworkRequest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63E8C3901DFE9E2800AE5727 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63E8C3921DFE9E2800AE5727 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				63E8C3CD1DFEA65800AE5727 /* AlamofireErrorHandler.swift */,
 				63E8C3D11DFEAC1F00AE5727 /* APIUnacceptableErrorInformation.swift */,
 				63E8C3C01DFE9ED800AE5727 /* JSONDecodable.swift */,
+				6352D9601E0A7B7000DC39C2 /* PagingEnabledRequest.swift */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				TargetAttributes = {
 					63E8C38C1DFE9E2800AE5727 = {
 						CreatedOnToolsVersion = 8.2;
+						DevelopmentTeam = 55V6ERRQ79;
 						ProvisioningStyle = Automatic;
 					};
 					63E8C3A01DFE9E2800AE5727 = {
@@ -485,6 +489,7 @@
 				63E8C3D01DFEA7EB00AE5727 /* UploadTask.swift in Sources */,
 				63E8C3C11DFE9ED800AE5727 /* NetworkRequest.swift in Sources */,
 				63E8C3911DFE9E2800AE5727 /* AppDelegate.swift in Sources */,
+				6352D9611E0A7B7000DC39C2 /* PagingEnabledRequest.swift in Sources */,
 				63E8C3C21DFE9ED800AE5727 /* NetworkClient.swift in Sources */,
 				63E8C3CE1DFEA65800AE5727 /* AlamofireErrorHandler.swift in Sources */,
 				63E8C3D21DFEAC1F00AE5727 /* APIUnacceptableErrorInformation.swift in Sources */,
@@ -640,7 +645,9 @@
 			baseConfigurationReference = 002249FB11AAC2C5841B2E9B /* Pods-NetworkRequest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 55V6ERRQ79;
 				INFOPLIST_FILE = NetworkRequest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.david.NetworkRequest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -653,7 +660,9 @@
 			baseConfigurationReference = ED94571447D1D0FCB5EC60EC /* Pods-NetworkRequest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 55V6ERRQ79;
 				INFOPLIST_FILE = NetworkRequest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.david.NetworkRequest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
