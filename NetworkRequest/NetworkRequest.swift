@@ -41,7 +41,6 @@ public protocol NetworkRequest {
 	var responseHandler: (Data) throws -> ResponseType { get }
 	/// Will transform given data to requested array of type of responses.
 	var arrayResponseHandler: (Data) throws -> [ResponseType] { get }
-	var progress: Progress? { get }
 	
 	// Optional
 	var baseURL: String { get }
@@ -71,7 +70,6 @@ public extension NetworkRequest {
     public var headers: [String : String] { return [:] }
 	
 	public var networkClient: NetworkClientType { return NetworkClient() }
-	public var progress: Progress? { return nil }
 }
 
 extension NetworkRequest where ResponseType: JSONDecodable {
