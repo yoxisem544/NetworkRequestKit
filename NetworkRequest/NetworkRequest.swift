@@ -81,7 +81,7 @@ extension NetworkRequest where ResponseType: JSONDecodable {
 
 extension NetworkRequest where ResponseType == IgnorableResult {
 	public var responseHandler: (Data) throws -> ResponseType { return ignorableResponseHandler }
-	public var arrayResponseHandler: (Data, Progress?) throws -> [ResponseType] { return ignorableArrayResponseHandler }
+	public var arrayResponseHandler: (Data) throws -> [ResponseType] { return ignorableArrayResponseHandler }
 }
 
 private func jsonResponseHandler<Response: JSONDecodable>(_ data: Data) throws -> Response {
@@ -97,8 +97,7 @@ private func jsonArrayResponseHandler<Response: JSONDecodable>(_ data: Data) thr
 	let json = JSON(data: data)
 	guard json.type == Type.array else { throw JSONDecodableError.parseError }
 	var responses: [Response] = []
-	let courseCount = json.count
-	for (key, json) in json {
+	for (_, json) in json {
         guard let response = (try? Response(decodeUsing: json)) else { continue }
         responses.append(response)
 	}
@@ -109,6 +108,6 @@ private func ignorableResponseHandler(_ data: Data) throws -> IgnorableResult {
 	return IgnorableResult()
 }
 
-private func ignorableArrayResponseHandler(_ data: Data, progress: Progress?) throws -> [IgnorableResult] {
+private func ignorableArrayResponseHandler(_ data: Data) throws -> [IgnorableResult] {
 	return []
 }
