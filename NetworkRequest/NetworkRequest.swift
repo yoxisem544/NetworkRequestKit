@@ -23,9 +23,6 @@ public enum NetworkRequestError: Error {
     case noNetworkConnection
 }
 
-/// Progress use to track current array response state.
-public typealias Progress = (String) -> ()
-
 /// A ignorable result.
 /// Will ignore the result server responsed.
 public typealias IgnorableResult = ()
@@ -43,7 +40,7 @@ public protocol NetworkRequest {
 	/// Will transform given data to requested type of response.
 	var responseHandler: (Data) throws -> ResponseType { get }
 	/// Will transform given data to requested array of type of responses.
-	var arrayResponseHandler: (Data, Progress?) throws -> [ResponseType] { get }
+	var arrayResponseHandler: (Data) throws -> [ResponseType] { get }
 	var progress: Progress? { get }
 	
 	// Optional
@@ -79,7 +76,7 @@ public extension NetworkRequest {
 
 extension NetworkRequest where ResponseType: JSONDecodable {
 	public var responseHandler: (Data) throws -> ResponseType { return jsonResponseHandler }
-	public var arrayResponseHandler: (Data, Progress?) throws -> [ResponseType] { return jsonArrayResponseHandler }
+	public var arrayResponseHandler: (Data) throws -> [ResponseType] { return jsonArrayResponseHandler }
 }
 
 extension NetworkRequest where ResponseType == IgnorableResult {
@@ -96,13 +93,12 @@ private func jsonResponseHandler<Response: JSONDecodable>(_ data: Data) throws -
     }
 }
 
-private func jsonArrayResponseHandler<Response: JSONDecodable>(_ data: Data, progress: Progress?) throws -> [Response] {
+private func jsonArrayResponseHandler<Response: JSONDecodable>(_ data: Data) throws -> [Response] {
 	let json = JSON(data: data)
 	guard json.type == Type.array else { throw JSONDecodableError.parseError }
 	var responses: [Response] = []
 	let courseCount = json.count
 	for (key, json) in json {
-        DispatchQueue.main.async { progress?("\(key)/\(courseCount)") }
         guard let response = (try? Response(decodeUsing: json)) else { continue }
         responses.append(response)
 	}

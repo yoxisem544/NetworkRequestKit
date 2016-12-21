@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6352D9611E0A7B7000DC39C2 /* PagingEnabledRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6352D9601E0A7B7000DC39C2 /* PagingEnabledRequest.swift */; };
+		6352D9631E0A7DF200DC39C2 /* FetchUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6352D9621E0A7DF200DC39C2 /* FetchUsers.swift */; };
 		63E8C3911DFE9E2800AE5727 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E8C3901DFE9E2800AE5727 /* AppDelegate.swift */; };
 		63E8C3931DFE9E2800AE5727 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E8C3921DFE9E2800AE5727 /* ViewController.swift */; };
 		63E8C3961DFE9E2800AE5727 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63E8C3941DFE9E2800AE5727 /* Main.storyboard */; };
@@ -51,6 +52,7 @@
 		52C886E1BDBFE822C73952F6 /* Pods-NetworkRequestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkRequestTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NetworkRequestTests/Pods-NetworkRequestTests.release.xcconfig"; sourceTree = "<group>"; };
 		5ED1215AA98FBC55DB9E627E /* Pods_NetworkRequestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NetworkRequestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6352D9601E0A7B7000DC39C2 /* PagingEnabledRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingEnabledRequest.swift; sourceTree = "<group>"; };
+		6352D9621E0A7DF200DC39C2 /* FetchUsers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchUsers.swift; sourceTree = "<group>"; };
 		63E8C38D1DFE9E2800AE5727 /* NetworkRequest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetworkRequest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63E8C3901DFE9E2800AE5727 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63E8C3921DFE9E2800AE5727 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				63E8C3901DFE9E2800AE5727 /* AppDelegate.swift */,
 				63E8C3921DFE9E2800AE5727 /* ViewController.swift */,
 				63E8C3CF1DFEA7EB00AE5727 /* UploadTask.swift */,
+				6352D9621E0A7DF200DC39C2 /* FetchUsers.swift */,
 				63E8C3941DFE9E2800AE5727 /* Main.storyboard */,
 				63E8C3971DFE9E2800AE5727 /* Assets.xcassets */,
 				63E8C3991DFE9E2800AE5727 /* LaunchScreen.storyboard */,
@@ -485,6 +488,7 @@
 				63E8C3CA1DFEA4F700AE5727 /* MultipartNetworkRequest.swift in Sources */,
 				63E8C3CC1DFEA57200AE5727 /* MultipartNetworkClient.swift in Sources */,
 				63E8C3931DFE9E2800AE5727 /* ViewController.swift in Sources */,
+				6352D9631E0A7DF200DC39C2 /* FetchUsers.swift in Sources */,
 				63E8C3C31DFE9ED800AE5727 /* JSONDecodable.swift in Sources */,
 				63E8C3D01DFEA7EB00AE5727 /* UploadTask.swift in Sources */,
 				63E8C3C11DFE9ED800AE5727 /* NetworkRequest.swift in Sources */,
