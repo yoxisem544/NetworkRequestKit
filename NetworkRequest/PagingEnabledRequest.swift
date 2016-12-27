@@ -18,7 +18,7 @@ public protocol PagingEnabledRequest {
     var pagingParameters: [String : Any] { get }
 }
 
-extension PagingEnabledRequest {
+extension PagingEnabledRequest where Self : NetworkRequest {
     
     public var perPage: Int { return 25 }
     
