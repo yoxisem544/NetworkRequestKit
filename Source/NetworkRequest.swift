@@ -23,9 +23,6 @@ public enum NetworkRequestError: Error {
     case noNetworkConnection
 }
 
-/// Progress use to track current array response state.
-public typealias Progress = (String) -> ()
-
 /// A ignorable result.
 /// Will ignore the result server responsed.
 public typealias IgnorableResult = ()
@@ -43,8 +40,7 @@ public protocol NetworkRequest {
 	/// Will transform given data to requested type of response.
 	var responseHandler: (Data) throws -> ResponseType { get }
 	/// Will transform given data to requested array of type of responses.
-	var arrayResponseHandler: (Data, Progress?) throws -> [ResponseType] { get }
-	var progress: Progress? { get }
+	var arrayResponseHandler: (Data) throws -> [ResponseType] { get }
 	
 	// Optional
 	var baseURL: String { get }
@@ -68,23 +64,23 @@ public extension NetworkRequest {
 	public var accessToken: String { return "" }
 	public var baseURL: String { return "https://google.com" }
 	public var method: Alamofire.HTTPMethod { return .get }
-	public var encoding: Alamofire.ParameterEncoding { return JSONEncoding.default }
+    /// Enconding of this request, default encoding of get is url encoded. post is json encoded
+    public var encoding: Alamofire.ParameterEncoding { return method == .get ? URLEncoding.default : JSONEncoding.default }
 	
 	public var parameters: [String : Any]? { return nil }
     public var headers: [String : String] { return [:] }
 	
 	public var networkClient: NetworkClientType { return NetworkClient() }
-	public var progress: Progress? { return nil }
 }
 
 extension NetworkRequest where ResponseType: JSONDecodable {
 	public var responseHandler: (Data) throws -> ResponseType { return jsonResponseHandler }
-	public var arrayResponseHandler: (Data, Progress?) throws -> [ResponseType] { return jsonArrayResponseHandler }
+	public var arrayResponseHandler: (Data) throws -> [ResponseType] { return jsonArrayResponseHandler }
 }
 
 extension NetworkRequest where ResponseType == IgnorableResult {
 	public var responseHandler: (Data) throws -> ResponseType { return ignorableResponseHandler }
-	public var arrayResponseHandler: (Data, Progress?) throws -> [ResponseType] { return ignorableArrayResponseHandler }
+	public var arrayResponseHandler: (Data) throws -> [ResponseType] { return ignorableArrayResponseHandler }
 }
 
 private func jsonResponseHandler<Response: JSONDecodable>(_ data: Data) throws -> Response {
@@ -96,13 +92,11 @@ private func jsonResponseHandler<Response: JSONDecodable>(_ data: Data) throws -
     }
 }
 
-private func jsonArrayResponseHandler<Response: JSONDecodable>(_ data: Data, progress: Progress?) throws -> [Response] {
+private func jsonArrayResponseHandler<Response: JSONDecodable>(_ data: Data) throws -> [Response] {
 	let json = JSON(data: data)
 	guard json.type == Type.array else { throw JSONDecodableError.parseError }
 	var responses: [Response] = []
-	let courseCount = json.count
-	for (key, json) in json {
-        DispatchQueue.main.async { progress?("\(key)/\(courseCount)") }
+	for (_, json) in json {
         guard let response = (try? Response(decodeUsing: json)) else { continue }
         responses.append(response)
 	}
@@ -113,6 +107,6 @@ private func ignorableResponseHandler(_ data: Data) throws -> IgnorableResult {
 	return IgnorableResult()
 }
 
-private func ignorableArrayResponseHandler(_ data: Data, progress: Progress?) throws -> [IgnorableResult] {
+private func ignorableArrayResponseHandler(_ data: Data) throws -> [IgnorableResult] {
 	return []
 }

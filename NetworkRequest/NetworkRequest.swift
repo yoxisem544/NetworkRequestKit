@@ -64,7 +64,8 @@ public extension NetworkRequest {
 	public var accessToken: String { return "" }
 	public var baseURL: String { return "https://google.com" }
 	public var method: Alamofire.HTTPMethod { return .get }
-	public var encoding: Alamofire.ParameterEncoding { return JSONEncoding.default }
+    /// Enconding of this request, default encoding of get is url encoded. post is json encoded
+    public var encoding: Alamofire.ParameterEncoding { return method == .get ? URLEncoding.default : JSONEncoding.default }
 	
 	public var parameters: [String : Any]? { return nil }
     public var headers: [String : String] { return [:] }
