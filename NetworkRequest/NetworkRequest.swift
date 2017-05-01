@@ -27,6 +27,10 @@ public enum NetworkRequestError: Error {
 /// Will ignore the result server responsed.
 public typealias IgnorableResult = ()
 
+/// JSON type of response.
+/// Will just pack the response data into json, wont be trasfrom into model.
+public typealias RawJSONResult = JSON
+
 /// NetworkRequest
 ///
 /// All information you need to make a network request.
@@ -39,8 +43,6 @@ public protocol NetworkRequest {
 	var endpoint: String { get }
 	/// Will transform given data to requested type of response.
 	var responseHandler: (Data) throws -> ResponseType { get }
-	/// Will transform given data to requested array of type of responses.
-	var arrayResponseHandler: (Data) throws -> [ResponseType] { get }
 	
 	// Optional
 	var baseURL: String { get }
@@ -59,10 +61,10 @@ public protocol NetworkRequest {
 
 public extension NetworkRequest {
 	/// URL to make the request.
-    public var url: String { return baseURL + (endpoint.hasPrefix("/") ? endpoint : ("/" + endpoint)) }
+    public var url: String { return baseURL + endpoint }
 	/// Access token to make the api request.
 	public var accessToken: String { return "" }
-	public var baseURL: String { return "https://google.com" }
+	public var baseURL: String { return "https://httpbin.org/" }
 	public var method: Alamofire.HTTPMethod { return .get }
     /// Enconding of this request, default encoding of get is url encoded. post is json encoded
     public var encoding: Alamofire.ParameterEncoding { return method == .get ? URLEncoding.default : JSONEncoding.default }
@@ -81,6 +83,10 @@ extension NetworkRequest where ResponseType: JSONDecodable {
 extension NetworkRequest where ResponseType == IgnorableResult {
 	public var responseHandler: (Data) throws -> ResponseType { return ignorableResponseHandler }
 	public var arrayResponseHandler: (Data) throws -> [ResponseType] { return ignorableArrayResponseHandler }
+}
+
+extension NetworkRequest where ResponseType == RawJSONResult {
+    public var responseHandler: (Data) throws -> ResponseType { return rawJSONResponseHandler }
 }
 
 private func jsonResponseHandler<Response: JSONDecodable>(_ data: Data) throws -> Response {
@@ -109,4 +115,8 @@ private func ignorableResponseHandler(_ data: Data) throws -> IgnorableResult {
 
 private func ignorableArrayResponseHandler(_ data: Data) throws -> [IgnorableResult] {
 	return []
+}
+
+private func rawJSONResponseHandler(_ data: Data) throws -> RawJSONResult {
+    return JSON(data: data)
 }

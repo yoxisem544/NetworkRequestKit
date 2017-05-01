@@ -10,17 +10,17 @@ import Foundation
 import PromiseKit
 import Alamofire
 
-final public class FetchUsers : NetworkRequest, PagingEnabledRequest {
-    public typealias ResponseType = IgnorableResult
+final public class FetchUsers : NetworkRequest {
+    public typealias ResponseType = RawJSONResult
     
-    public var endpoint: String { return "/users" }
-    public var method: HTTPMethod { return .get }
-    public var parameters: [String : Any]? { return ["page": page, "per_page": perPage] }
+    public var endpoint: String { return "/post" }
+    public var method: HTTPMethod { return .post }
+    public var parameters: [String : Any]? { return ["YA": 100] }
     
     public var page: Int = 1
-    public func perform(page: Int) -> Promise<(results: [ResponseType], nextPage: Int?)> {
+    public func perform(page: Int) -> Promise<ResponseType> {
         self.page = page
-        return networkClient.performRequest(self).then(execute: arrayResponseHandler).then(execute: checkHasNextPage)
+        return networkClient.performRequest(self).then(execute: responseHandler)
     }
     
 }

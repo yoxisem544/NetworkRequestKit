@@ -144,6 +144,22 @@ final public class FetchUsers : NetworkRequest {
 }
 ```
 
+#### If you just want JSON resposne
+In some situation, you just want a json back and handle everything by your self, or don't want to create another model file. Use `RawJSONResult` instead, `RawJSONResult` is typealias of `JSON`. Also need rseponse handler here. Notice that json is a dictionary in JS, so it is impossible to have an array response handler here.
+
+```swift
+final public class FetchUsers : NetworkRequest {
+	public typealias ResponseType = RawJSONResult
+	
+	public var endPoint: String { return "/users" }
+	public var method: HTTPMethod { return .get }
+	
+	public func perform() -> Promise<[ResonseType]> {
+		return networkClient.performRequest(self).then(execute: responseHandler)
+	}
+}
+```
+
 #### Paging request
 Fetching a bunch of data form server is not always a go thing to do. It makes your user experience bad aslo lower the performance on server. So, this is why we need a paging.
 
