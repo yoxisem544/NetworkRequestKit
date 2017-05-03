@@ -8,6 +8,12 @@ There is a [artical](https://github.com/yoxisem544/Network-Evolution-Practice) e
 - xcode 8.0 or above
 - iOS 9 or above
 
+## Installation
+Through Cocoapods
+```
+pod 'NetworkRequestKit'
+```
+
 ## Dependency
 - [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)
 - [Alamofire](https://github.com/Alamofire/Alamofire) 4.x
