@@ -1,0 +1,10 @@
+framework module NetworkRequestKit {
+  umbrella header "NetworkRequestKit-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module NetworkRequestKit.__Swift {
+    exclude header "NetworkRequestKit-Swift.h"
+}

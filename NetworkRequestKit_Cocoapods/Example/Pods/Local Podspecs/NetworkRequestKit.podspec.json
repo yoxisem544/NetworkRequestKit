@@ -1,0 +1,22 @@
+{
+  "name": "NetworkRequestKit",
+  "version": "0.1.0",
+  "summary": "A short description of NetworkRequestKit.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/yoxisem544/NetworkRequestKit",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "yoxisem544": "yoxisem544@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/yoxisem544/NetworkRequestKit.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "NetworkRequestKit/Classes/**/*"
+}

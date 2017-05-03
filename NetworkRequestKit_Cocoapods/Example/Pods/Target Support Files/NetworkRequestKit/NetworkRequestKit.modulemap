@@ -1,0 +1,6 @@
+framework module NetworkRequestKit {
+  umbrella header "NetworkRequestKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

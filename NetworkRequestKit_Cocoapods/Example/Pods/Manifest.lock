@@ -1,0 +1,16 @@
+PODS:
+  - NetworkRequestKit (0.1.0)
+
+DEPENDENCIES:
+  - NetworkRequestKit (from `../`)
+
+EXTERNAL SOURCES:
+  NetworkRequestKit:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  NetworkRequestKit: 2c3cd9275f10e70ddb1ad11aba371799d49d0563
+
+PODFILE CHECKSUM: 6f692ca24db01c6b0e9a60b0244685e637933893
+
+COCOAPODS: 1.1.1
