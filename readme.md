@@ -19,6 +19,11 @@ pod 'NetworkRequestKit', '~> 1.1.2'
 - [Alamofire](https://github.com/Alamofire/Alamofire)
 - [PromiseKit](https://github.com/mxcl/PromiseKit)
 
+## Sample Project
+Sample project is located in the file `NetworkRequestExample`. If you don't want to read the instruction below, just open and play with the sample project.
+
+**Notice**: Remember to install pod before opening sample project.
+
 ## How to use it
 ### Preparation
 #### Set Your Base Url
