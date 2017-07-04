@@ -17,7 +17,7 @@ public class AlamofireErrorHandler {
       return NetworkRequestError.noNetwork
     } else {
       let errorInfo = RequestErrorInformation(error: error, data: data, urlResponse: urlResponse)
-      let e = NetworkRequestError.requestFailed(information: RequestErrorInformation)
+      let e = NetworkRequestError.requestFailed(information: errorInfo)
       return e as Error
     }
   }
