@@ -14,9 +14,9 @@ Through Cocoapods
 pod 'NetworkRequestKit'
 ```
 
-## Dependency
+## Dependencies
 - [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)
-- [Alamofire](https://github.com/Alamofire/Alamofire) 4.x
+- [Alamofire](https://github.com/Alamofire/Alamofire)
 - [PromiseKit](https://github.com/mxcl/PromiseKit)
 
 ## Installation
@@ -25,6 +25,20 @@ todo: need to put it onto cocoapods
 
 
 ## How to use it
+### Preparation
+#### Set Your Base Url
+What I will do here is to create a new file in your project naming it `NetworkRequestConfig`. Inside this file, I will indicate my `base url` and also set reqeust `header` if you use `Oauth` by throwing your `access token` through `header`.
+
+NetworkRequestConfig.swift
+```swift
+import NetworkRequestKit
+
+extension NetworkRequest {
+  var baseURL: String { return "http://httpbin.org" }
+  var accessToken: String { return "SOMETOKEN" }
+  var headers: [String : String] { return ["access_token": accessToken] }
+}
+```
 ### First Look at NetworkRequest
 #### Create Model
 Let's assume we have to fetch user information from server. So let's create a struct `User`. `User` will have it's name and id. It will be like this.

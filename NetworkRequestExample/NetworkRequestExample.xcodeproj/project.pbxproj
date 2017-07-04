@@ -14,6 +14,7 @@
 		63B132491F0B5BD4007B2B2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63B132481F0B5BD4007B2B2B /* Assets.xcassets */; };
 		63B1324C1F0B5BD4007B2B2B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63B1324A1F0B5BD4007B2B2B /* LaunchScreen.storyboard */; };
 		63B132571F0B5BD5007B2B2B /* NetworkRequestExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B132561F0B5BD5007B2B2B /* NetworkRequestExampleTests.swift */; };
+		63B132621F0B5F2A007B2B2B /* NetworkRequestConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B132611F0B5F2A007B2B2B /* NetworkRequestConfig.swift */; };
 		CE7753676072940D90947062 /* Pods_NetworkRequestExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73A6ACBB61082A9EB0B2252A /* Pods_NetworkRequestExample.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +41,7 @@
 		63B132521F0B5BD4007B2B2B /* NetworkRequestExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkRequestExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		63B132561F0B5BD5007B2B2B /* NetworkRequestExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestExampleTests.swift; sourceTree = "<group>"; };
 		63B132581F0B5BD5007B2B2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63B132611F0B5F2A007B2B2B /* NetworkRequestConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRequestConfig.swift; sourceTree = "<group>"; };
 		73A6ACBB61082A9EB0B2252A /* Pods_NetworkRequestExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NetworkRequestExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D68E6E23F2030C02301D944 /* Pods-NetworkRequestExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkRequestExampleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NetworkRequestExampleTests/Pods-NetworkRequestExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		83FE0D4A64EF4376BDD9B070 /* Pods-NetworkRequestExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkRequestExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NetworkRequestExample/Pods-NetworkRequestExample.debug.xcconfig"; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 			children = (
 				63B132411F0B5BD4007B2B2B /* AppDelegate.swift */,
 				63B132431F0B5BD4007B2B2B /* ViewController.swift */,
+				63B132611F0B5F2A007B2B2B /* NetworkRequestConfig.swift */,
 				63B132451F0B5BD4007B2B2B /* Main.storyboard */,
 				63B132481F0B5BD4007B2B2B /* Assets.xcassets */,
 				63B1324A1F0B5BD4007B2B2B /* LaunchScreen.storyboard */,
@@ -329,6 +332,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63B132621F0B5F2A007B2B2B /* NetworkRequestConfig.swift in Sources */,
 				63B132441F0B5BD4007B2B2B /* ViewController.swift in Sources */,
 				63B132421F0B5BD4007B2B2B /* AppDelegate.swift in Sources */,
 			);
@@ -540,6 +544,7 @@
 				63B1325D1F0B5BD5007B2B2B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		63B1325E1F0B5BD5007B2B2B /* Build configuration list for PBXNativeTarget "NetworkRequestExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -548,6 +553,7 @@
 				63B132601F0B5BD5007B2B2B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
