@@ -10,7 +10,7 @@ import Foundation
 import NetworkRequestKit
 
 extension NetworkRequest {
-  var baseURL: String { return "http://httpbin.org" }
-  var accessToken: String { return "SOMETOKEN" }
-  var headers: [String : String] { return ["access_token": accessToken] }
+  public var baseURL: String { return "http://httpbin.org" }
+  public var accessToken: String { return "SOMETOKEN" }
+  public var headers: [String : String] { return ["access_token": accessToken] }
 }
