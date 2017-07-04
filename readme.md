@@ -75,7 +75,7 @@ Also, we need to explicitly tell the request what will the response type be. Her
 final public class FetchUser : NetworkRequest {
 	public typealias ResponseType = User
 	
-	public var endPoint: String { return "/user" }
+	public var endpoint: String { return "/user" }
 	public var method: HTTPMethod { return .get }
 }
 ```
@@ -89,7 +89,7 @@ How do we make a api call using `NetworkRequest`? This will be really simple. If
 final public class FetchUser : NetworkRequest {
 	public typealias ResponseType = User
 	
-	public var endPoint: String { return "/user" }
+	public var endpoint: String { return "/user" }
 	public var method: HTTPMethod { return .get }
 	
 	public func perform() -> Promise<ResonseType> {
@@ -108,7 +108,7 @@ I recommand you to have a private id inside your class. So, no one can revise th
 final public class FetchUser : NetworkRequest {
 	public typealias ResponseType = User
 	
-	public var endPoint: String { return "/user" }
+	public var endpoint: String { return "/user" }
 	public var method: Alamofire.HTTPMethod { return .get }
 	public var parameters: [String : Any] { return ["id": id] }
 	public var encoding: Alamofire.ParameterEncoding { return URLEncoding.default }
@@ -134,7 +134,7 @@ If the response is not important, make `ResponseType` equal to `IgnorableRequslt
 final public class FetchUser : NetworkRequest {
 	public typealias ResponseType = IgnorableRequslt
 	
-	public var endPoint: String { return "/user" }
+	public var endpoint: String { return "/user" }
 	public var method: HTTPMethod { return .get }
 	
 	public func perform() -> Promise<ResonseType> {
@@ -150,7 +150,7 @@ In many situation, the response is returned in a json array. What you need to do
 final public class FetchUsers : NetworkRequest {
 	public typealias ResponseType = User
 	
-	public var endPoint: String { return "/users" }
+	public var endpoint: String { return "/users" }
 	public var method: HTTPMethod { return .get }
 	
 	public func perform() -> Promise<[ResonseType]> {
@@ -166,7 +166,7 @@ In some situation, you just want a json back and handle everything by your self,
 final public class FetchUsers : NetworkRequest {
 	public typealias ResponseType = RawJSONResult
 	
-	public var endPoint: String { return "/users" }
+	public var endpoint: String { return "/users" }
 	public var method: HTTPMethod { return .get }
 	
 	public func perform() -> Promise<[ResonseType]> {
@@ -320,8 +320,9 @@ fetchUser.perform().catch({ e in
 2. Model conform to `JSONDecodable` can throw. Any error happened in responseHandler will be transform into `NetworkRequestError.failToDecode` type error.
 3. If you use OAuth 2.0, you can add your access token inside `NetworkRequest` extension.
 4. Remember to set your base url, this url maybe an ip or a url to your server.
-5. endPoint **DO** have to start with a `/`.
+5. endpoint **DO** have to start with a `/`.
 6. `arrayResonseHandler` will try to parse json into array, doesn't mean parsing work is fine, double check if you got an empty array. Will throw if json is not type of array.
+7. Beware of `endpoint` and `endPoint`. Sometimes you get an error that's telling you, you do not conform to `NetworkRequest` protocol, endpoint must be all lowercased characters!!!
 
 
 
