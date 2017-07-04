@@ -22,6 +22,8 @@
 		63B1326D1F0B67A6007B2B2B /* Fetch5Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B1326C1F0B67A6007B2B2B /* Fetch5Users.swift */; };
 		63B1326F1F0B6ABB007B2B2B /* PagingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B1326E1F0B6ABB007B2B2B /* PagingRequest.swift */; };
 		63B132731F0B6D9C007B2B2B /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B132721F0B6D9C007B2B2B /* DictionaryExtension.swift */; };
+		63B132751F0B7459007B2B2B /* MultipartUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B132741F0B7459007B2B2B /* MultipartUpload.swift */; };
+		63B132771F0B75C6007B2B2B /* E0YWjdh.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 63B132761F0B75C6007B2B2B /* E0YWjdh.jpg */; };
 		CE7753676072940D90947062 /* Pods_NetworkRequestExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73A6ACBB61082A9EB0B2252A /* Pods_NetworkRequestExample.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +58,8 @@
 		63B1326C1F0B67A6007B2B2B /* Fetch5Users.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fetch5Users.swift; sourceTree = "<group>"; };
 		63B1326E1F0B6ABB007B2B2B /* PagingRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingRequest.swift; sourceTree = "<group>"; };
 		63B132721F0B6D9C007B2B2B /* DictionaryExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtension.swift; sourceTree = "<group>"; };
+		63B132741F0B7459007B2B2B /* MultipartUpload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipartUpload.swift; sourceTree = "<group>"; };
+		63B132761F0B75C6007B2B2B /* E0YWjdh.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = E0YWjdh.jpg; sourceTree = "<group>"; };
 		73A6ACBB61082A9EB0B2252A /* Pods_NetworkRequestExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NetworkRequestExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D68E6E23F2030C02301D944 /* Pods-NetworkRequestExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkRequestExampleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NetworkRequestExampleTests/Pods-NetworkRequestExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		83FE0D4A64EF4376BDD9B070 /* Pods-NetworkRequestExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkRequestExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NetworkRequestExample/Pods-NetworkRequestExample.debug.xcconfig"; sourceTree = "<group>"; };
@@ -122,6 +126,7 @@
 				63B132451F0B5BD4007B2B2B /* Main.storyboard */,
 				63B132481F0B5BD4007B2B2B /* Assets.xcassets */,
 				63B1324A1F0B5BD4007B2B2B /* LaunchScreen.storyboard */,
+				63B132761F0B75C6007B2B2B /* E0YWjdh.jpg */,
 				63B1324D1F0B5BD4007B2B2B /* Info.plist */,
 			);
 			path = NetworkRequestExample;
@@ -145,6 +150,7 @@
 				63B1326A1F0B66B5007B2B2B /* MakeRequestThenIgnoreResult.swift */,
 				63B1326C1F0B67A6007B2B2B /* Fetch5Users.swift */,
 				63B1326E1F0B6ABB007B2B2B /* PagingRequest.swift */,
+				63B132741F0B7459007B2B2B /* MultipartUpload.swift */,
 			);
 			name = "Sample Requests";
 			sourceTree = "<group>";
@@ -249,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63B1324C1F0B5BD4007B2B2B /* LaunchScreen.storyboard in Resources */,
+				63B132771F0B75C6007B2B2B /* E0YWjdh.jpg in Resources */,
 				63B132491F0B5BD4007B2B2B /* Assets.xcassets in Resources */,
 				63B132471F0B5BD4007B2B2B /* Main.storyboard in Resources */,
 			);
@@ -361,6 +368,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63B132751F0B7459007B2B2B /* MultipartUpload.swift in Sources */,
 				63B1326B1F0B66B5007B2B2B /* MakeRequestThenIgnoreResult.swift in Sources */,
 				63B132621F0B5F2A007B2B2B /* NetworkRequestConfig.swift in Sources */,
 				63B132691F0B664C007B2B2B /* FetchUserShowingJSON.swift in Sources */,

@@ -59,6 +59,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hpY-eH-khE">
                                 <rect key="frame" x="108" y="210" width="158" height="30"/>
                                 <state key="normal" title="Multipart image upload"/>
+                                <connections>
+                                    <action selector="multipartClickedWithButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gch-an-ukf"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

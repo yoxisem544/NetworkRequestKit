@@ -39,7 +39,7 @@ final public class PagingRequest : NetworkRequest, PagingEnabledRequest {
     ].merged(with: pagingParameters)
   }
   
-  public func makeRequest(forPage page: Int) -> Promise<(results: [ResponseType], nextPage: Int?)> {
+  public func makeRequest(forPage page: Int) -> Promise<PagingResult> {
     self.page = page
     
     return networkClient.performRequest(self).then(execute: { data -> [ResponseType] in

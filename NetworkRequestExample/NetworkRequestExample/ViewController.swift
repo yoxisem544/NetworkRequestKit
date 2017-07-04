@@ -54,7 +54,15 @@ final class ViewController: UIViewController {
       print("user count \(users.count)")
       print("next page \(nextPage)")
     }).catch(execute: { e in
-      
+      print(e)
+    })
+  }
+  
+  @IBAction func multipartClicked(button: UIButton) {
+    MultipartUpload().perform().then(execute: { r -> Void in
+      print(r)
+    }).catch(execute: { e in
+      print(e)
     })
   }
 
