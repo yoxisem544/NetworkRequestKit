@@ -2,6 +2,7 @@
 [![Version](https://img.shields.io/cocoapods/v/NetworkRequestKit.svg?style=flat)](https://cocoapods.org/pods/NetworkRequestKit)
 [![License](https://img.shields.io/cocoapods/l/NetworkRequestKit.svg?style=flat)](https://cocoapods.org/pods/NetworkRequestKit)
 [![Platform](https://img.shields.io/cocoapods/p/NetworkRequestKit.svg?style=flat)](https://cocoapods.org/pods/NetworkRequestKit)
+
 This code is inspried by Austin Feight's [Evolution of a Network Layer](https://github.com/feighter09/Evolution-of-a-Network-Layer). I made it possiable to handle multipart request and deal with response that is ignorable according to my situation. 
 
 There is a [artical](https://github.com/yoxisem544/Network-Evolution-Practice) explain why should we wrap network request like this in chinese. We won't go too deep here. If you don't understand what we are doing here. I sugguest you to read this [artical](https://github.com/yoxisem544/Network-Evolution-Practice) first or [Evolution of A Networking Layer](https://medium.com/@austinfeight/evolution-of-a-networking-layer-c395017188b3#.pkla1nafd) for a english version.
