@@ -11,7 +11,7 @@
 		496814966B9FDC841C95CA56E5564813 /* NetworkRequestKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 54C09A0658907D4D9EFC5D2333B70CA8 /* NetworkRequestKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5A4CECC476EC0D1115548F8973F9E6B1 /* Pods-NetworkRequestKit_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BF126A63F4EADA826FF859F62655DE3E /* Pods-NetworkRequestKit_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		63B1F3211EBA1778002011F5 /* AlamofireErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B1F3191EBA1778002011F5 /* AlamofireErrorHandler.swift */; };
-		63B1F3221EBA1778002011F5 /* APIUnacceptableErrorInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B1F31A1EBA1778002011F5 /* APIUnacceptableErrorInformation.swift */; };
+		63B1F3221EBA1778002011F5 /* RequestErrorInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B1F31A1EBA1778002011F5 /* RequestErrorInformation.swift */; };
 		63B1F3231EBA1778002011F5 /* JSONDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B1F31B1EBA1778002011F5 /* JSONDecodable.swift */; };
 		63B1F3241EBA1778002011F5 /* MultipartNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B1F31C1EBA1778002011F5 /* MultipartNetworkClient.swift */; };
 		63B1F3251EBA1778002011F5 /* MultipartNetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B1F31D1EBA1778002011F5 /* MultipartNetworkRequest.swift */; };
@@ -39,7 +39,7 @@
 		276BB59D56A02AAA1B56558393E5A36F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		54C09A0658907D4D9EFC5D2333B70CA8 /* NetworkRequestKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NetworkRequestKit-umbrella.h"; sourceTree = "<group>"; };
 		63B1F3191EBA1778002011F5 /* AlamofireErrorHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireErrorHandler.swift; sourceTree = "<group>"; };
-		63B1F31A1EBA1778002011F5 /* APIUnacceptableErrorInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIUnacceptableErrorInformation.swift; sourceTree = "<group>"; };
+		63B1F31A1EBA1778002011F5 /* RequestErrorInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestErrorInformation.swift; sourceTree = "<group>"; };
 		63B1F31B1EBA1778002011F5 /* JSONDecodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONDecodable.swift; sourceTree = "<group>"; };
 		63B1F31C1EBA1778002011F5 /* MultipartNetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipartNetworkClient.swift; sourceTree = "<group>"; };
 		63B1F31D1EBA1778002011F5 /* MultipartNetworkRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipartNetworkRequest.swift; sourceTree = "<group>"; };
@@ -182,7 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				63B1F3191EBA1778002011F5 /* AlamofireErrorHandler.swift */,
-				63B1F31A1EBA1778002011F5 /* APIUnacceptableErrorInformation.swift */,
+				63B1F31A1EBA1778002011F5 /* RequestErrorInformation.swift */,
 				63B1F31B1EBA1778002011F5 /* JSONDecodable.swift */,
 				63B1F31C1EBA1778002011F5 /* MultipartNetworkClient.swift */,
 				63B1F31D1EBA1778002011F5 /* MultipartNetworkRequest.swift */,
@@ -309,7 +309,7 @@
 				8513EEB900C4CED59EAC7838445DCD95 /* NetworkRequestKit-dummy.m in Sources */,
 				63B1F3251EBA1778002011F5 /* MultipartNetworkRequest.swift in Sources */,
 				63B1F3261EBA1778002011F5 /* NetworkClient.swift in Sources */,
-				63B1F3221EBA1778002011F5 /* APIUnacceptableErrorInformation.swift in Sources */,
+				63B1F3221EBA1778002011F5 /* RequestErrorInformation.swift in Sources */,
 				63B1F3281EBA1778002011F5 /* PagingEnabledRequest.swift in Sources */,
 				63B1F3231EBA1778002011F5 /* JSONDecodable.swift in Sources */,
 			);

@@ -12,15 +12,15 @@ import SwiftyJSON
 
 /// NetworkRequestError
 ///
-/// - invalidData:         Fail to parse data from response.
-/// - apiUnacceptable:     Fail to connect with api. Error information attached.
-/// - unknownError:        Unknown error.
-/// - noNetworkConnection: no network connection.
+/// - failToDecode:  Fail to decode the response.
+/// - requestFailed: Reqeust failed, with error information attached.
+/// - unknownError:  Unknown error.
+/// - noNetwork:     No network connection.
 public enum NetworkRequestError: Error {
-	case invalidData
-    case apiUnacceptable(errorInformation: APIUnacceptableErrorInformation)
-	case unknownError
-    case noNetworkConnection
+  case failToDecode
+  case requestFailed(information: RequestErrorInformation)
+  case unknownError
+  case noNetwork
 }
 
 /// A ignorable result.
@@ -37,40 +37,44 @@ public typealias RawJSONResult = JSON
 public protocol NetworkRequest {
 	associatedtype ResponseType
 	
-	// Required
+	// MARK: Required
+  
 	/// End Point.
 	/// e.g. /cards/:id/dislike
 	var endpoint: String { get }
+  
 	/// Will transform given data to requested type of response.
 	var responseHandler: (Data) throws -> ResponseType { get }
 	
-	// Optional
+	// MARK: Optional
+	/// An url pointing to your service.
+  /// e.g. https://www.myService.io or an ip.
+  /// You should extend NetworkRequest and overload this property.
 	var baseURL: String { get }
+  
 	/// Method to make the request. E.g. get, post.
 	var method: Alamofire.HTTPMethod { get }
+  
 	/// Parameter encoding. E.g. JSON, URLEncoding.default.
 	var encoding: Alamofire.ParameterEncoding { get }
 	
 	var parameters: [String : Any]? { get }
+  
 	var headers: [String : String] { get }
 	
 	/// Client that helps you to make reqeust.
 	var networkClient: NetworkClientType { get }
-	
 }
 
 public extension NetworkRequest {
 	/// URL to make the request.
-    public var url: String { return baseURL + endpoint }
-	/// Access token to make the api request.
-	public var accessToken: String { return "" }
-	public var baseURL: String { return "https://httpbin.org/" }
+  public var url: String { return baseURL + endpoint }
 	public var method: Alamofire.HTTPMethod { return .get }
-    /// Enconding of this request, default encoding of get is url encoded. post is json encoded
-    public var encoding: Alamofire.ParameterEncoding { return method == .get ? URLEncoding.default : JSONEncoding.default }
+  /// Enconding of this request, default encoding of get is url encoded. post is json encoded
+  public var encoding: Alamofire.ParameterEncoding { return method == .get ? URLEncoding.default : JSONEncoding.default }
 	
 	public var parameters: [String : Any]? { return nil }
-    public var headers: [String : String] { return [:] }
+  public var headers: [String : String] { return [:] }
 	
 	public var networkClient: NetworkClientType { return NetworkClient() }
 }
@@ -86,16 +90,16 @@ extension NetworkRequest where ResponseType == IgnorableResult {
 }
 
 extension NetworkRequest where ResponseType == RawJSONResult {
-    public var responseHandler: (Data) throws -> ResponseType { return rawJSONResponseHandler }
+  public var responseHandler: (Data) throws -> ResponseType { return rawJSONResponseHandler }
 }
 
 private func jsonResponseHandler<Response: JSONDecodable>(_ data: Data) throws -> Response {
 	let json = JSON(data: data)
-    do {
-        return try Response(decodeUsing: json)
-    } catch {
-        throw NetworkRequestError.invalidData
-    }
+  do {
+    return try Response(decodeUsing: json)
+  } catch {
+    throw NetworkRequestError.failToDecode
+  }
 }
 
 private func jsonArrayResponseHandler<Response: JSONDecodable>(_ data: Data) throws -> [Response] {
@@ -103,8 +107,8 @@ private func jsonArrayResponseHandler<Response: JSONDecodable>(_ data: Data) thr
 	guard json.type == Type.array else { throw JSONDecodableError.parseError }
 	var responses: [Response] = []
 	for (_, json) in json {
-        guard let response = (try? Response(decodeUsing: json)) else { continue }
-        responses.append(response)
+    guard let response = (try? Response(decodeUsing: json)) else { continue }
+    responses.append(response)
 	}
 	return responses
 }
@@ -118,5 +122,5 @@ private func ignorableArrayResponseHandler(_ data: Data) throws -> [IgnorableRes
 }
 
 private func rawJSONResponseHandler(_ data: Data) throws -> RawJSONResult {
-    return JSON(data: data)
+  return JSON(data: data)
 }
