@@ -13,13 +13,13 @@
 
 /* Begin PBXFileReference section */
 		01FCBE7A2E1C33C14A6844B9 /* Pods_NetworkRequestKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NetworkRequestKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		45DEFE2AEA11E2E1170EC23D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		45DEFE2AEA11E2E1170EC23D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* NetworkRequestKit_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkRequestKit_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
-		A3ED3DF1744EBAD2CE0AFBEE /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		A3ED3DF1744EBAD2CE0AFBEE /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		AABFC8504F75480E553CE2C3 /* Pods-NetworkRequestKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkRequestKit_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NetworkRequestKit_Tests/Pods-NetworkRequestKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		DBE19E8F0070D306746EBB3D /* NetworkRequestKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = NetworkRequestKit.podspec; path = ../NetworkRequestKit.podspec; sourceTree = "<group>"; };
+		DBE19E8F0070D306746EBB3D /* NetworkRequestKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = NetworkRequestKit.podspec; path = ../NetworkRequestKit.podspec; sourceTree = "<group>"; };
 		FA3BF844FA78F6CD970C7D50 /* Pods-NetworkRequestKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkRequestKit_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NetworkRequestKit_Tests/Pods-NetworkRequestKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -131,10 +131,6 @@
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
-					607FACCF1AFB9204008FA782 = {
-						CreatedOnToolsVersion = 6.3.1;
-						LastSwiftMigration = 0820;
-					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
 						LastSwiftMigration = 0820;

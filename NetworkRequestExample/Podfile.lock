@@ -1,0 +1,31 @@
+PODS:
+  - Alamofire (4.4.0)
+  - NetworkRequestKit (1.0.1):
+    - Alamofire (~> 4)
+    - PromiseKit (~> 4)
+    - SwiftyJSON (~> 3)
+  - PromiseKit (4.2.2):
+    - PromiseKit/Foundation (= 4.2.2)
+    - PromiseKit/QuartzCore (= 4.2.2)
+    - PromiseKit/UIKit (= 4.2.2)
+  - PromiseKit/CorePromise (4.2.2)
+  - PromiseKit/Foundation (4.2.2):
+    - PromiseKit/CorePromise
+  - PromiseKit/QuartzCore (4.2.2):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (4.2.2):
+    - PromiseKit/CorePromise
+  - SwiftyJSON (3.1.4)
+
+DEPENDENCIES:
+  - NetworkRequestKit (~> 1)
+
+SPEC CHECKSUMS:
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  NetworkRequestKit: 4aa8bf3c5f1eaed22e0e92f0f011b367af4b2aa3
+  PromiseKit: 00e8886881f151c7e573d06b437915b0bb2970ec
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+
+PODFILE CHECKSUM: ba09339ebadea97163cecca2a3846c80d1ae29d3
+
+COCOAPODS: 1.2.1
