@@ -185,6 +185,12 @@ Fetching a bunch of data form server is not always a go thing to do. It makes yo
 
 It will be like this, conform to `PagingEnabledRequest` protocol, then you have to specific which page are you on now. Execute response handler, then check if there is next page of data. Remember to track current page in your model or view controller.
 
+`PagingResult` is a typealias of 
+```swift
+typealias PagingResult = (results: [JSONDecodable], nextPage: Int?)
+```
+This is for conveneince, typing such a long return type may be easy to get wrong.
+
 ```swift
 final public class FetchUsers : NetworkRequest, PagingEnabledRequest {
   public typealias ResponseType = IgnorableResult
@@ -194,13 +200,17 @@ final public class FetchUsers : NetworkRequest, PagingEnabledRequest {
   public var parameters: [String : Any]? { return ["page": page, "per_page": perPage] }
 
   public var page: Int = 1
-  public func perform(page: Int) -> Promise<(results: [ResponseType], nextPage: Int?)> {
+  public func perform(page: Int) -> Promise<PagingResult> {
   	self.page = page
     return networkClient.performRequest(self).then(execute: arrayResponseHandler).then(execute: checkHasNextPage)
   }
     
 }
 ```
+
+**NOTE**
+
+There is also a `pagingParameters: [String : Any]` to get a packed dictionary if you like to combine two dictionary `parameters` and `pagingParameters` together.
 
 #### Multipart request
 Like uploading a large image to server, multipart request is often used in Web development. When it comes to iOS, it's not that easy. 
