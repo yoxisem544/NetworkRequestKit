@@ -14,7 +14,7 @@ public class AlamofireErrorHandler {
     
   public class func handleNetworkRequestError(_ error: Error, data: Data?, urlResponse: HTTPURLResponse?) -> Error {
     if (error as NSError).code == -1009 {
-      return NetworkRequestError.noNetworkConnection
+      return NetworkRequestError.noNetwork
     } else {
       let errorInfo = RequestErrorInformation(error: error, data: data, urlResponse: urlResponse)
       let e = NetworkRequestError.requestFailed(information: RequestErrorInformation)
