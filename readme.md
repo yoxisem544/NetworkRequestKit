@@ -11,18 +11,13 @@ There is a [artical](https://github.com/yoxisem544/Network-Evolution-Practice) e
 ## Installation
 Through Cocoapods
 ```
-pod 'NetworkRequestKit'
+pod 'NetworkRequestKit', '~> 1.1.2'
 ```
 
 ## Dependencies
 - [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)
 - [Alamofire](https://github.com/Alamofire/Alamofire)
 - [PromiseKit](https://github.com/mxcl/PromiseKit)
-
-## Installation
-Drag the code in source folder into your project.
-todo: need to put it onto cocoapods
-
 
 ## How to use it
 ### Preparation
@@ -261,37 +256,46 @@ final public class UploadTask : MultipartNetworkRequest {
 
 #### Error handling
 There are some predefined errors I often use in my project. 
-1. If there is something wrong when parsing data, will return `.invalidData` error.
+1. If there is something wrong when parsing data, will return `.failToDecode` error.
 2. If there is something wrong while making the api call, will return `.apiUnaccepatable` error. Error information is attached.
 3. If there is no network, will return `.unknownError` error. You should fire request everytime nomatter network is available or not. This is recommanded in Alamofire's document. If you want to track the network state, check Alamofire's reachability document.
 
 ```swift
 /// NetworkRequestError
 ///
-/// - invalidData:         Fail to parse data from response.
-/// - apiUnacceptable:     Fail to connect with api. Error information attached.
-/// - unknownError:        Unknown error.
-/// - noNetworkConnection: no network connection.
+/// - failToDecode:  Fail to decode the response.
+/// - requestFailed: Reqeust failed, with error information attached.
+/// - unknownError:  Unknown error.
+/// - noNetwork:     No network connection.
 public enum NetworkRequestError: Error {
-	case invalidData
-    case apiUnacceptable(errorInformation: APIUnacceptableErrorInformation)
-	case unknownError
-    case noNetworkConnection
+  case failToDecode
+  case requestFailed(information: RequestErrorInformation)
+  case unknownError
+  case noNetwork
 }
 ```
 
-Handling an error is easy. `APIUnacceptableErrorInformation` contains the information you may need to handle an error. `error` is Alamofire's returned error. `statusCode` is something like 404, 401. `reponseBody` contains full information returned by server. `errorCode` is where I get the excat error code from server. You can define it or remove it by yourself.
+Handling an error is easy. `RequestErrorInformation` contains the information you may need to handle an error. `error` is Alamofire's returned error. `statusCode` is something like 404, 401. `reponseBody` contains full information returned by server.
 
 ```swift
-public struct APIUnacceptableErrorInformation {
-    let error: Error
-    let statusCode: Int?
-    let responseBody: JSON
-    let errorCode: String?
+public struct RequestErrorInformation {
+  
+  /// Error returned from alamofire.
+  let error: Error
+  /// Error status code.
+  let statusCode: Int?
+  /// More error information, this could be returned error information from backend.
+  let responseBody: JSON
+  
+  init(error: Error, data: Data?, urlResponse: HTTPURLResponse?) {
+    self.error = error
+    responseBody = JSON(data: data ?? Data())
+    statusCode = urlResponse?.statusCode
+  }
 }
 ```
 
-You can handle the error message using `switch` or `if-let`.
+You can handle the error message by using `switch` or `if-let`.
 
 ```swift
 let fetchUser = FetchUser()
@@ -313,10 +317,10 @@ fetchUser.perform().catch({ e in
 
 #### Things to know
 1. get method with parameters will need to change the encoding to URLEnconding.default, or it's gonna fail with no reason. This maybe Alamofire's bug or is just a RESTful api rule.
-2. Model conform to `JSONDecodable` can throw. Any error happened in responseHandler will be transform into `NetworkRequestError.invalidData` type error.
+2. Model conform to `JSONDecodable` can throw. Any error happened in responseHandler will be transform into `NetworkRequestError.failToDecode` type error.
 3. If you use OAuth 2.0, you can add your access token inside `NetworkRequest` extension.
 4. Remember to set your base url, this url maybe an ip or a url to your server.
-5. endPoint doesn't have to start with a /. I already handle this for you :). 
+5. endPoint **DO** have to start with a `/`.
 6. `arrayResonseHandler` will try to parse json into array, doesn't mean parsing work is fine, double check if you got an empty array. Will throw if json is not type of array.
 
 
