@@ -30,7 +30,7 @@ final public class Fetch5Users : NetworkRequest {
   
   public func perform() -> Promise<[ResponseType]> {
     return networkClient.performRequest(self).then(execute: { data -> [ResponseType] in
-      let json = JSON(data: data)["json"]["users"]
+      let json = try JSON(data: data)["json"]["users"]
       // array response hanlder can only parse json array.
       // this is a transform.
       return try self.arrayResponseHandler(json.rawData())

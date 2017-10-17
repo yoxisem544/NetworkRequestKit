@@ -43,7 +43,7 @@ final public class PagingRequest : NetworkRequest, PagingEnabledRequest {
     self.page = page
     
     return networkClient.performRequest(self).then(execute: { data -> [ResponseType] in
-      let json = JSON(data: data)["json"]["users"]
+      let json = try JSON(data: data)["json"]["users"]
       // array response hanlder can only parse json array.
       // this is a transform.
       return try self.arrayResponseHandler(json.rawData())
