@@ -14,7 +14,7 @@ import PromiseKit
 
 final public class PagingRequest : NetworkRequest, PagingEnabledRequest {
   
-  public typealias ResponseType = User
+  public typealias ResponseType = [User]
   
   // I use httpbin here, check httpbin for futher information
   // For normal usage, this is the endpoint that your request is going.
@@ -42,11 +42,11 @@ final public class PagingRequest : NetworkRequest, PagingEnabledRequest {
   public func makeRequest(forPage page: Int) -> Promise<PagingResult> {
     self.page = page
     
-    return networkClient.performRequest(self).then(execute: { data -> [ResponseType] in
+    return networkClient.performRequest(self).then(execute: { data -> ResponseType in
       let json = try JSON(data: data)["json"]["users"]
       // array response hanlder can only parse json array.
       // this is a transform.
-      return try self.arrayResponseHandler(json.rawData())
+      return try self.responseHandler(json.rawData())
     }).then(execute: checkHasNextPage)
   }
   
