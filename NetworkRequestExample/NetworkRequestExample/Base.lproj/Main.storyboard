@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F2073" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -63,6 +63,13 @@
                                     <action selector="multipartClickedWithButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gch-an-ukf"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jGZ-gG-bwy">
+                                <rect key="frame" x="127" y="248" width="120" height="30"/>
+                                <state key="normal" title="Codable Example"/>
+                                <connections>
+                                    <action selector="codableExmapleButtonClickedWithButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1Ky-9o-QBm"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -74,8 +81,10 @@
                             <constraint firstItem="bN8-21-qrQ" firstAttribute="centerX" secondItem="RzB-T2-8mV" secondAttribute="centerX" id="Yce-Yc-Suz"/>
                             <constraint firstItem="pXx-vV-TrB" firstAttribute="centerX" secondItem="Ae3-IS-H1u" secondAttribute="centerX" id="c4F-Qr-pAD"/>
                             <constraint firstItem="ZBi-Dd-fEo" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="e7Z-5r-ps0"/>
+                            <constraint firstItem="jGZ-gG-bwy" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iUp-dI-0FV"/>
                             <constraint firstItem="bN8-21-qrQ" firstAttribute="top" secondItem="RzB-T2-8mV" secondAttribute="bottom" constant="8" id="k1a-iJ-9ct"/>
                             <constraint firstItem="hpY-eH-khE" firstAttribute="centerX" secondItem="pXx-vV-TrB" secondAttribute="centerX" id="sbw-Cg-82q"/>
+                            <constraint firstItem="jGZ-gG-bwy" firstAttribute="top" secondItem="hpY-eH-khE" secondAttribute="bottom" constant="8" id="tBu-eg-0xw"/>
                             <constraint firstItem="hpY-eH-khE" firstAttribute="top" secondItem="pXx-vV-TrB" secondAttribute="bottom" constant="8" id="ws8-Bq-vDo"/>
                             <constraint firstItem="RzB-T2-8mV" firstAttribute="centerX" secondItem="ZBi-Dd-fEo" secondAttribute="centerX" id="ziW-lu-bS0"/>
                         </constraints>
