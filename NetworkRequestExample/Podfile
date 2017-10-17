@@ -6,7 +6,7 @@ target 'NetworkRequestExample' do
   use_frameworks!
 
   # Pods for NetworkRequestExample
-  pod 'NetworkRequestKit', :git => 'https://github.com/yoxisem544/NetworkRequestKit', :tag => '2.0.0-alpha.1'
+  pod 'NetworkRequestKit', '~> 2.0.1'
 
   target 'NetworkRequestExampleTests' do
     inherit! :search_paths
