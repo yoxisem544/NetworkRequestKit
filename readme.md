@@ -16,10 +16,11 @@ There is a [artical](https://github.com/yoxisem544/Network-Evolution-Practice) e
 **Still in alpha testing.** Moving from Swift 3.x -> Swift 4.x.
 Features TODO:
 ```
-1. move from 3.x -> 4.x
-2. update dependencies to latest version
-3. add support to Codable protocol
+1. ~~move from 3.x -> 4.x~~
+2. ~~update dependencies to latest version~~
+3. ~~add support to Codable protocol~~
 4. make array response handler disappear
+5. ~~add sample for how to use codable as a response type~~
 ```
 
 ## Installation
