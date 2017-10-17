@@ -12,12 +12,14 @@ import SwiftyJSON
 
 /// NetworkRequestError
 ///
-/// - failToDecode:  Fail to decode the response.
+/// - decodingError: Fail to decode.
+/// - jsonParsingError: Fail to parse JSON.
 /// - requestFailed: Reqeust failed, with error information attached.
 /// - unknownError:  Unknown error.
 /// - noNetwork:     No network connection.
 public enum NetworkRequestError: Error {
-  case failToDecode
+  case decodingError(error: DecodingError)
+  case jsonParsingError(error: Error)
   case requestFailed(information: RequestErrorInformation)
   case unknownError
   case noNetwork
@@ -66,6 +68,7 @@ public protocol NetworkRequest {
 	var networkClient: NetworkClientType { get }
 }
 
+// MARK: - NetworkRequest default implementation
 public extension NetworkRequest {
 	/// URL to make the request.
   public var url: String { return baseURL + endpoint }
@@ -79,63 +82,38 @@ public extension NetworkRequest {
 	public var networkClient: NetworkClientType { return NetworkClient() }
 }
 
-extension NetworkRequest where ResponseType: JSONDecodable {
-	public var responseHandler: (Data) throws -> ResponseType { return jsonResponseHandler }
-	public var arrayResponseHandler: (Data) throws -> [ResponseType] { return jsonArrayResponseHandler }
-}
-
+// MARK: - Codable extension
 extension NetworkRequest where ResponseType: Codable {
   public var responseHandler: (Data) throws -> ResponseType { return codableResponseHandler }
-  public var arrayResponseHandler: (Data) throws -> [ResponseType] { return codableArrayResponseHandler }
-}
-
-extension NetworkRequest where ResponseType == IgnorableResult {
-	public var responseHandler: (Data) throws -> ResponseType { return ignorableResponseHandler }
-	public var arrayResponseHandler: (Data) throws -> [ResponseType] { return ignorableArrayResponseHandler }
-}
-
-extension NetworkRequest where ResponseType == RawJSONResult {
-  public var responseHandler: (Data) throws -> ResponseType { return rawJSONResponseHandler }
-}
-
-private func jsonResponseHandler<Response: JSONDecodable>(_ data: Data) throws -> Response {
-	let json = try JSON(data: data)
-  do {
-    return try Response(decodeUsing: json)
-  } catch {
-    throw NetworkRequestError.failToDecode
-  }
-}
-
-private func jsonArrayResponseHandler<Response: JSONDecodable>(_ data: Data) throws -> [Response] {
-	let json = try JSON(data: data)
-	guard json.type == Type.array else { throw JSONDecodableError.parseError }
-	var responses: [Response] = []
-	for (_, json) in json {
-    guard let response = (try? Response(decodeUsing: json)) else { continue }
-    responses.append(response)
-	}
-	return responses
 }
 
 private func codableResponseHandler<Response: Codable>(_ data: Data) throws -> Response {
   let jsonDecoder = JSONDecoder()
-  return try jsonDecoder.decode(Response.self, from: data)
+  do {
+    return try jsonDecoder.decode(Response.self, from: data)
+  } catch let e as DecodingError {
+    throw NetworkRequestError.decodingError(error: e)
+  }
 }
 
-private func codableArrayResponseHandler<Response: Codable>(_ data: Data) throws -> [Response] {
-  let jsonDecoder = JSONDecoder()
-  return try jsonDecoder.decode([Response].self, from: data)
+// MARK: - Ignorable Result extesion aka Void, ()
+extension NetworkRequest where ResponseType == IgnorableResult {
+	public var responseHandler: (Data) throws -> ResponseType { return ignorableResponseHandler }
 }
 
 private func ignorableResponseHandler(_ data: Data) throws -> IgnorableResult {
-	return IgnorableResult()
+  return IgnorableResult()
 }
 
-private func ignorableArrayResponseHandler(_ data: Data) throws -> [IgnorableResult] {
-	return []
+// MARK: - SwifyJSON extension
+extension NetworkRequest where ResponseType == RawJSONResult {
+  public var responseHandler: (Data) throws -> ResponseType { return rawJSONResponseHandler }
 }
 
 private func rawJSONResponseHandler(_ data: Data) throws -> RawJSONResult {
-  return try JSON(data: data)
+  do {
+    return try JSON(data: data)
+  } catch let e {
+    throw NetworkRequestError.jsonParsingError(error: e)
+  }
 }

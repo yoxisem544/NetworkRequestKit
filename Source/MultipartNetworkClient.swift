@@ -9,7 +9,6 @@
 import Foundation
 import PromiseKit
 import Alamofire
-import SwiftyJSON
 
 public protocol MultipartNetworkClientType {
   func performMultipartRequest<Request: MultipartNetworkRequest>(_ networkRequest: Request) -> Promise<Data>
