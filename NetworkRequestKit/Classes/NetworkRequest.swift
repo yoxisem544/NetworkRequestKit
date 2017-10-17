@@ -84,6 +84,11 @@ extension NetworkRequest where ResponseType: JSONDecodable {
 	public var arrayResponseHandler: (Data) throws -> [ResponseType] { return jsonArrayResponseHandler }
 }
 
+extension NetworkRequest where ResponseType: Codable {
+  public var responseHandler: (Data) throws -> ResponseType { return codableResponseHandler }
+  public var arrayResponseHandler: (Data) throws -> [ResponseType] { return codableArrayResponseHandler }
+}
+
 extension NetworkRequest where ResponseType == IgnorableResult {
 	public var responseHandler: (Data) throws -> ResponseType { return ignorableResponseHandler }
 	public var arrayResponseHandler: (Data) throws -> [ResponseType] { return ignorableArrayResponseHandler }
@@ -94,7 +99,7 @@ extension NetworkRequest where ResponseType == RawJSONResult {
 }
 
 private func jsonResponseHandler<Response: JSONDecodable>(_ data: Data) throws -> Response {
-	let json = JSON(data: data)
+	let json = try JSON(data: data)
   do {
     return try Response(decodeUsing: json)
   } catch {
@@ -103,7 +108,7 @@ private func jsonResponseHandler<Response: JSONDecodable>(_ data: Data) throws -
 }
 
 private func jsonArrayResponseHandler<Response: JSONDecodable>(_ data: Data) throws -> [Response] {
-	let json = JSON(data: data)
+	let json = try JSON(data: data)
 	guard json.type == Type.array else { throw JSONDecodableError.parseError }
 	var responses: [Response] = []
 	for (_, json) in json {
@@ -111,6 +116,16 @@ private func jsonArrayResponseHandler<Response: JSONDecodable>(_ data: Data) thr
     responses.append(response)
 	}
 	return responses
+}
+
+private func codableResponseHandler<Response: Codable>(_ data: Data) throws -> Response {
+  let jsonDecoder = JSONDecoder()
+  return try jsonDecoder.decode(Response.self, from: data)
+}
+
+private func codableArrayResponseHandler<Response: Codable>(_ data: Data) throws -> [Response] {
+  let jsonDecoder = JSONDecoder()
+  return try jsonDecoder.decode([Response].self, from: data)
 }
 
 private func ignorableResponseHandler(_ data: Data) throws -> IgnorableResult {
@@ -122,5 +137,5 @@ private func ignorableArrayResponseHandler(_ data: Data) throws -> [IgnorableRes
 }
 
 private func rawJSONResponseHandler(_ data: Data) throws -> RawJSONResult {
-  return JSON(data: data)
+  return try JSON(data: data)
 }
