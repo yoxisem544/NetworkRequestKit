@@ -11,7 +11,7 @@ import PromiseKit
 
 public protocol PagingEnabledRequest {
   
-  typealias PagingResult = (results: [Codable], nextPage: Int?)
+  typealias PagingResult = (results: [Decodable], nextPage: Int?)
   
   /// Responses per page, default to 25.
   var perPage: Int { get }
@@ -27,7 +27,7 @@ extension PagingEnabledRequest where Self : NetworkRequest {
   
   public var pagingParameters: [String : Any] { return ["page": page, "per_page": perPage] }
   
-  public func checkHasNextPage<Response: Codable>(results: [Response]) -> Promise<PagingResult> {
+  public func checkHasNextPage<Response: Decodable>(results: [Response]) -> Promise<PagingResult> {
     if results.count < perPage {
       // no next page
       return Promise(value: (results: results, nextPage: nil))
