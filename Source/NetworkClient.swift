@@ -21,8 +21,8 @@ public struct NetworkClient: NetworkClientType {
 		
 		let (promise, fulfill, reject) = Promise<Data>.pending()
 		print("🔗", #function, "send request to url:", networkRequest.url)
-        print("📩 method:", networkRequest.method)
-        print("🚠 parameters:", networkRequest.parameters ?? [:])
+    print("📩 method:", networkRequest.method)
+    print("🚠 parameters:", networkRequest.parameters ?? [:])
 		
 		request(networkRequest.url,
 		        method: networkRequest.method,
