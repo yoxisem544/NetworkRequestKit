@@ -109,6 +109,16 @@ private func jsonArrayResponseHandler<Response: JSONDecodable>(_ data: Data) thr
 	return responses
 }
 
+private func codableResponseHandler<Response: Codable>(_ data: Data) throws -> Response {
+  let jsonDecoder = JSONDecoder()
+  return try jsonDecoder.decode(Response.self, from: data)
+}
+private func codableArrayResponseHandler<Response: Codable>(_ data: Data) throws -> [Response] {
+  let jsonDecoder = JSONDecoder()
+  return try jsonDecoder.decode([Response].self, from: data)
+}
+
+
 private func ignorableResponseHandler(_ data: Data) throws -> IgnorableResult {
 	return IgnorableResult()
 }
