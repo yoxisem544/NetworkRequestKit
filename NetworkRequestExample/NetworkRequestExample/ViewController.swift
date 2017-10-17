@@ -65,6 +65,14 @@ final class ViewController: UIViewController {
       print(e)
     })
   }
+  
+  @IBAction func codableExmapleButtonClicked(button: UIButton) {
+    FetchEmployee().perform().then(execute: { r -> Void in
+      print(r)
+    }).catch(execute: { e in
+      print(e)
+    })
+  }
 
 }
 
