@@ -8,8 +8,8 @@ This code is inspried by Austin Feight's [Evolution of a Network Layer](https://
 There is a [artical](https://github.com/yoxisem544/Network-Evolution-Practice) explain why should we wrap network request like this in chinese. We won't go too deep here. If you don't understand what we are doing here. I sugguest you to read this [artical](https://github.com/yoxisem544/Network-Evolution-Practice) first or [Evolution of A Networking Layer](https://medium.com/@austinfeight/evolution-of-a-networking-layer-c395017188b3#.pkla1nafd) for a english version.
 
 ## Requirement
-- swift 3.0 or above
-- xcode 8.0 or above
+- swift 4.x
+- xcode 9.x
 - iOS 9 or above
 
 ## Warning
@@ -22,7 +22,7 @@ Features TODO:
 4. ~~make array response handler disappear~~
 5. ~~add sample for how to use codable as a response type~~
 6. ~~remove JSONDecodable protocol~~
-7. update readme
+7. ~~update readme~~
 ```
 
 ## Installation
