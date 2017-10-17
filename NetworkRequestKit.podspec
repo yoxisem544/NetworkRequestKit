@@ -42,6 +42,6 @@ TODO: Add long description of the pod here.
 
   s.dependency 'Alamofire', '~> 4.5'
   s.dependency 'PromiseKit', '~> 4.4'
-  s.dependency 'SwiftyJSON', :git => 'https://github.com/Alamofire/Alamofire.git', :tag => '4.0.0-alpha.1'
+  s.dependency 'SwiftyJSON', '~> 4.0.0-alpha'
 
 end
