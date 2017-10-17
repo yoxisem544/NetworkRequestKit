@@ -19,8 +19,10 @@ Features TODO:
 1. ~~move from 3.x -> 4.x~~
 2. ~~update dependencies to latest version~~
 3. ~~add support to Codable protocol~~
-4. make array response handler disappear
+4. ~~make array response handler disappear~~
 5. ~~add sample for how to use codable as a response type~~
+6. ~~remove JSONDecodable protocol~~
+7. update readme
 ```
 
 ## Installation
@@ -65,16 +67,12 @@ public struct User {
 }
 ```
 
-#### Conform to JSONDecodable protocol
-In order to conform to JSONDecodable protocol, you will have to implement `init(decodeUsing json: JSON)` init method.
+#### Conform to Codable protocol
+In order to conform to Codable protocol, just add Codable protocol to your data model, then you're all done!
+For advance usage or complex nested json, please see [Ben Scheirman's Ultimate Guide to JSON Parsing with Swift 4](http://benscheirman.com/2017/06/ultimate-guide-to-json-parsing-with-swift-4/?utm_campaign=Revue%20newsletter&utm_medium=Newsletter&utm_source=AppCoda)
 
 ```swift
-extension User : JSONDecodable {
-	init(decodeUsing json: JSON) {
-		self.name = json["name"].stringValue
-		self.id = json["id"].intValue
-	}
-}
+extension User : Codable {}
 ```
 
 #### Create a network request
@@ -164,17 +162,17 @@ final public class FetchUser : NetworkRequest {
 ```
 
 #### If the response is an array
-In many situation, the response is returned in a json array. What you need to do here is to call `arrayResponseHandler` after performing Requset. Then indicate the return type to an array of `ResonseType`, like `[ResponseType]`
+In many situation, the response is returned in a json array. What you need to do here is to add angle bracket to your data model type. That's all :)
 
 ```swift
 final public class FetchUsers : NetworkRequest {
-	public typealias ResponseType = User
+	public typealias ResponseType = [User]
 	
 	public var endpoint: String { return "/users" }
 	public var method: HTTPMethod { return .get }
 	
-	public func perform() -> Promise<[ResonseType]> {
-		return networkClient.performRequest(self).then(execute: arrayResponseHandler)
+	public func perform() -> Promise<ResonseType> {
+		return networkClient.performRequest(self).then(execute: responseHandler)
 	}
 }
 ```
@@ -202,7 +200,7 @@ It will be like this, conform to `PagingEnabledRequest` protocol, then you have 
 
 `PagingResult` is a typealias of 
 ```swift
-typealias PagingResult = (results: [JSONDecodable], nextPage: Int?)
+typealias PagingResult = (results: [Codable], nextPage: Int?)
 ```
 This is for conveneince, typing such a long return type may be easy to get wrong.
 
@@ -276,19 +274,21 @@ final public class UploadTask : MultipartNetworkRequest {
 
 #### Error handling
 There are some predefined errors I often use in my project. 
-1. If there is something wrong when parsing data, will return `.failToDecode` error.
+1. If there is something wrong when parsing data, will return `.decodingError` or `.jsonParsingError` error.
 2. If there is something wrong while making the api call, will return `.apiUnaccepatable` error. Error information is attached.
 3. If there is no network, will return `.unknownError` error. You should fire request everytime nomatter network is available or not. This is recommanded in Alamofire's document. If you want to track the network state, check Alamofire's reachability document.
 
 ```swift
 /// NetworkRequestError
 ///
-/// - failToDecode:  Fail to decode the response.
+/// - decodingError: Fail to decode.
+/// - jsonParsingError: Fail to parse JSON.
 /// - requestFailed: Reqeust failed, with error information attached.
 /// - unknownError:  Unknown error.
 /// - noNetwork:     No network connection.
 public enum NetworkRequestError: Error {
-  case failToDecode
+  case decodingError(error: DecodingError)
+  case jsonParsingError(error: Error)
   case requestFailed(information: RequestErrorInformation)
   case unknownError
   case noNetwork
@@ -336,13 +336,11 @@ fetchUser.perform().catch({ e in
 ```
 
 #### Things to know
-1. get method with parameters will need to change the encoding to URLEnconding.default, or it's gonna fail with no reason. This maybe Alamofire's bug or is just a RESTful api rule.
-2. Model conform to `JSONDecodable` can throw. Any error happened in responseHandler will be transform into `NetworkRequestError.failToDecode` type error.
-3. If you use OAuth 2.0, you can add your access token inside `NetworkRequest` extension.
-4. Remember to set your base url, this url maybe an ip or a url to your server.
-5. endpoint **DO** have to start with a `/`.
-6. `arrayResonseHandler` will try to parse json into array, doesn't mean parsing work is fine, double check if you got an empty array. Will throw if json is not type of array.
-7. Beware of `endpoint` and `endPoint`. Sometimes you get an error that's telling you, you do not conform to `NetworkRequest` protocol, endpoint must be all lowercased characters!!!
+1. GET method with parameters will need to change the encoding to URLEnconding.default, or it's gonna fail with no reason. This maybe Alamofire's bug or is just a RESTful api rule. Its also default setting in `NetworkRequest.swift`.
+2. If you use OAuth 2.0, you can add your access token inside `NetworkRequest` extension.
+3. Remember to set your base url, this url maybe an ip or a url to your server.
+4. endpoint **DO** have to start with a `/`.
+5. Beware of `endpoint` and `endPoint`. Sometimes you get an error that's telling you, you do not conform to `NetworkRequest` protocol, endpoint must be all lowercased characters!!!
 
 
 

@@ -13,7 +13,7 @@ import SwiftyJSON
 import PromiseKit
 
 final public class Fetch5Users : NetworkRequest {
-  public typealias ResponseType = User
+  public typealias ResponseType = [User]
   
   public var endpoint: String { return "/post" }
   public var method: HTTPMethod { return .post }
@@ -28,12 +28,12 @@ final public class Fetch5Users : NetworkRequest {
     ]
   }
   
-  public func perform() -> Promise<[ResponseType]> {
-    return networkClient.performRequest(self).then(execute: { data -> [ResponseType] in
+  public func perform() -> Promise<ResponseType> {
+    return networkClient.performRequest(self).then(execute: { data -> ResponseType in
       let json = try JSON(data: data)["json"]["users"]
       // array response hanlder can only parse json array.
       // this is a transform.
-      return try self.arrayResponseHandler(json.rawData())
+      return try self.responseHandler(json.rawData())
     })
   }
   
