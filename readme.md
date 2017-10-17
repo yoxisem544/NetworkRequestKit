@@ -12,23 +12,10 @@ There is a [artical](https://github.com/yoxisem544/Network-Evolution-Practice) e
 - xcode 9.x
 - iOS 9 or above
 
-## Warning
-**Still in alpha testing.** Moving from Swift 3.x -> Swift 4.x.
-Features TODO:
-```
-1. ~~move from 3.x -> 4.x~~
-2. ~~update dependencies to latest version~~
-3. ~~add support to Codable protocol~~
-4. ~~make array response handler disappear~~
-5. ~~add sample for how to use codable as a response type~~
-6. ~~remove JSONDecodable protocol~~
-7. ~~update readme~~
-```
-
 ## Installation
 Through [Cocoapods](https://cocoapods.org/pods/NetworkRequestKit)
 ```
-pod 'NetworkRequestKit', '~> 2.0.0-alpha.1'
+pod 'NetworkRequestKit', '~> 2.0.0
 ```
 
 ## Dependencies
@@ -62,8 +49,8 @@ Let's assume we have to fetch user information from server. So let's create a st
 
 ```Swift
 public struct User {
-	let name: String
-	let id: Int
+  let name: String
+  let id: Int
 }
 ```
 
@@ -91,10 +78,10 @@ Also, we need to explicitly tell the request what will the response type be. Her
 
 ```swift
 final public class FetchUser : NetworkRequest {
-	public typealias ResponseType = User
+  public typealias ResponseType = User
 	
-	public var endpoint: String { return "/user" }
-	public var method: HTTPMethod { return .get }
+  public var endpoint: String { return "/user" }
+  public var method: HTTPMethod { return .get }
 }
 ```
 
@@ -105,14 +92,14 @@ How do we make a api call using `NetworkRequest`? This will be really simple. If
 
 ```swift
 final public class FetchUser : NetworkRequest {
-	public typealias ResponseType = User
+  public typealias ResponseType = User
 	
-	public var endpoint: String { return "/user" }
-	public var method: HTTPMethod { return .get }
+  public var endpoint: String { return "/user" }
+  public var method: HTTPMethod { return .get }
 	
-	public func perform() -> Promise<ResonseType> {
-		return networkClient.performRequest(self).then(execute: responseHandler)
-	}
+  public func perform() -> Promise<ResonseType> {
+    return networkClient.performRequest(self).then(execute: responseHandler)
+  }
 }
 ```
 
@@ -126,16 +113,16 @@ I recommand you to have a private id inside your class. So, no one can revise th
 final public class FetchUser : NetworkRequest {
 	public typealias ResponseType = User
 	
-	public var endpoint: String { return "/user" }
-	public var method: Alamofire.HTTPMethod { return .get }
-	public var parameters: [String : Any] { return ["id": id] }
-	public var encoding: Alamofire.ParameterEncoding { return URLEncoding.default }
+  public var endpoint: String { return "/user" }
+  public var method: Alamofire.HTTPMethod { return .get }
+  public var parameters: [String : Any] { return ["id": id] }
+  public var encoding: Alamofire.ParameterEncoding { return URLEncoding.default }
 	
-	private id: Int = 0
-	public func perform(id: Int) -> Promise<ResonseType> {
-		self.id = id
-		return networkClient.performRequest(self).then(execute: responseHandler)
-	}
+  private id: Int = 0
+  public func perform(id: Int) -> Promise<ResonseType> {
+    self.id = id
+    return networkClient.performRequest(self).then(execute: responseHandler)
+  }
 }
 ```
 
@@ -150,14 +137,14 @@ If the response is not important, make `ResponseType` equal to `IgnorableRequslt
 
 ```swift
 final public class FetchUser : NetworkRequest {
-	public typealias ResponseType = IgnorableRequslt
+  public typealias ResponseType = IgnorableRequslt
 	
-	public var endpoint: String { return "/user" }
-	public var method: HTTPMethod { return .get }
+  public var endpoint: String { return "/user" }
+  public var method: HTTPMethod { return .get }
 	
-	public func perform() -> Promise<ResonseType> {
-		return networkClient.performRequest(self).then(execute: responseHandler)
-	}
+  public func perform() -> Promise<ResonseType> {
+    return networkClient.performRequest(self).then(execute: responseHandler)
+  }
 }
 ```
 
@@ -166,14 +153,14 @@ In many situation, the response is returned in a json array. What you need to do
 
 ```swift
 final public class FetchUsers : NetworkRequest {
-	public typealias ResponseType = [User]
+  public typealias ResponseType = [User]
 	
-	public var endpoint: String { return "/users" }
-	public var method: HTTPMethod { return .get }
+  public var endpoint: String { return "/users" }
+  public var method: HTTPMethod { return .get }
 	
-	public func perform() -> Promise<ResonseType> {
-		return networkClient.performRequest(self).then(execute: responseHandler)
-	}
+  public func perform() -> Promise<ResonseType> {
+    return networkClient.performRequest(self).then(execute: responseHandler)
+  }
 }
 ```
 
@@ -182,14 +169,14 @@ In some situation, you just want a json back and handle everything by your self,
 
 ```swift
 final public class FetchUsers : NetworkRequest {
-	public typealias ResponseType = RawJSONResult
+  public typealias ResponseType = RawJSONResult
 	
-	public var endpoint: String { return "/users" }
-	public var method: HTTPMethod { return .get }
+  public var endpoint: String { return "/users" }
+  public var method: HTTPMethod { return .get }
 	
-	public func perform() -> Promise<[ResonseType]> {
-		return networkClient.performRequest(self).then(execute: responseHandler)
-	}
+  public func perform() -> Promise<[ResonseType]> {
+    return networkClient.performRequest(self).then(execute: responseHandler)
+  }
 }
 ```
 
@@ -214,7 +201,7 @@ final public class FetchUsers : NetworkRequest, PagingEnabledRequest {
 
   public var page: Int = 1
   public func perform(page: Int) -> Promise<PagingResult> {
-  	self.page = page
+    self.page = page
     return networkClient.performRequest(self).then(execute: arrayResponseHandler).then(execute: checkHasNextPage)
   }
     
@@ -236,16 +223,14 @@ You will need to implement these getters when comforming to `MultipartNetworkReq
 
 ``` swift
 public protocol MultipartNetworkRequest : NetworkRequest {
-    
-	/// Data prepared to upload
-	var multipartUploadData: Data { get }
-	/// e.g. "avatar"
-	var multipartUploadName: String { get }
-	/// e.g. "file"
-	var multipartUploadFileName: String { get }
-	/// e.g. "image/jpeg"
-	var multipartUploadMimeType: String { get }
-    
+  /// Data prepared to upload
+  var multipartUploadData: Data { get }
+  /// e.g. "avatar"
+  var multipartUploadName: String { get }
+  /// e.g. "file"
+  var multipartUploadFileName: String { get }
+  /// e.g. "image/jpeg"
+  var multipartUploadMimeType: String { get }
 }
 ```
 
@@ -253,22 +238,22 @@ This is sample class that you might do to create a multipart upload request:
 
 ```swift
 final public class UploadTask : MultipartNetworkRequest {
-	public typealias ResponseType = IgnorableResult
+  public typealias ResponseType = IgnorableResult
 	    
-	public var endpoint: String { return "/user/199/uploadAvatar" }
-	public var method: HTTPMethod { return .post }
-	public var encoding: ParameterEncoding { return URLEncoding.default }
+  public var endpoint: String { return "/user/199/uploadAvatar" }
+  public var method: HTTPMethod { return .post }
+  public var encoding: ParameterEncoding { return URLEncoding.default }
+      
+  public var multipartUploadData: Data { return data }
+  public var multipartUploadName: String { return "new_avatar" }
+  public var multipartUploadFileName: String { return "file" }
+  public var multipartUploadMimeType: String { return "image/jpeg" }
 	    
-	public var multipartUploadData: Data { return data }
-	public var multipartUploadName: String { return "new_avatar" }
-	public var multipartUploadFileName: String { return "file" }
-	public var multipartUploadMimeType: String { return "image/jpeg" }
-	    
-	private var data: Data!
-	func perform(avatarData: Data) -> Promise<ResponseType> {
-		self.data = avatarData
-		return networkClient.performUploadRequest(self).then(execute: responseHandler)
-	}
+  private var data: Data!
+  func perform(avatarData: Data) -> Promise<ResponseType> {
+  self.data = avatarData
+    return networkClient.performUploadRequest(self).then(execute: responseHandler)
+  }
 }
 ```
 
@@ -321,17 +306,17 @@ You can handle the error message by using `switch` or `if-let`.
 let fetchUser = FetchUser()
 fetchUser.perform().catch({ e in 
 	// if-let statement
-	if case let apiUnacceptable(errorInformation: errorInfo) = e {
-		print(errorInfo)
-	}
+  if case let apiUnacceptable(errorInformation: errorInfo) = e {
+    print(errorInfo)
+  }
 	
-	// switch statement
-	switch(e) {
-	case let apiUnacceptable(errorInformation: errorInfo):
-		print(errorInfo)
-	default:
-		break
-	}
+  // switch statement
+  switch(e) {
+  case let apiUnacceptable(errorInformation: errorInfo):
+    print(errorInfo)
+  default:
+    break
+  }
 }) 
 ```
 
