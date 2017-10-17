@@ -15,7 +15,7 @@ There is a [artical](https://github.com/yoxisem544/Network-Evolution-Practice) e
 ## Installation
 Through [Cocoapods](https://cocoapods.org/pods/NetworkRequestKit)
 ```
-pod 'NetworkRequestKit', '~> 2.0.0
+pod 'NetworkRequestKit', '~> 2.0.1'
 ```
 
 ## Dependencies
@@ -187,7 +187,7 @@ It will be like this, conform to `PagingEnabledRequest` protocol, then you have 
 
 `PagingResult` is a typealias of 
 ```swift
-typealias PagingResult = (results: [Codable], nextPage: Int?)
+typealias PagingResult = (results: [Decodable], nextPage: Int?)
 ```
 This is for conveneince, typing such a long return type may be easy to get wrong.
 

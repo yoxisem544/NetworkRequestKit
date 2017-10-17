@@ -83,11 +83,11 @@ public extension NetworkRequest {
 }
 
 // MARK: - Codable extension
-extension NetworkRequest where ResponseType: Codable {
-  public var responseHandler: (Data) throws -> ResponseType { return codableResponseHandler }
+extension NetworkRequest where ResponseType: Decodable {
+  public var responseHandler: (Data) throws -> ResponseType { return decodableResponseHandler }
 }
 
-private func codableResponseHandler<Response: Codable>(_ data: Data) throws -> Response {
+private func decodableResponseHandler<Response: Decodable>(_ data: Data) throws -> Response {
   let jsonDecoder = JSONDecoder()
   do {
     return try jsonDecoder.decode(Response.self, from: data)

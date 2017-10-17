@@ -26,14 +26,14 @@ public struct User {
   }
 }
 
-extension User : Encodable {
-  public func encode(to encoder: Encoder) throws {
-    var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(name, forKey: .name)
-    try container.encode(age, forKey: .age)
-    try container.encode(height, forKey: .height)
-  }
-}
+//extension User : Encodable {
+//  public func encode(to encoder: Encoder) throws {
+//    var container = encoder.container(keyedBy: CodingKeys.self)
+//    try container.encode(name, forKey: .name)
+//    try container.encode(age, forKey: .age)
+//    try container.encode(height, forKey: .height)
+//  }
+//}
 
 extension User : Decodable {
   public init(from decoder: Decoder) throws {

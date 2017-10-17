@@ -51,7 +51,7 @@ struct Toy: Codable {
 }
 
 class FetchEmployee : NetworkRequest {
-  typealias ResponseType = [Employee]
+  typealias ResponseType = Employee
   
   // I use httpbin here, check httpbin for futher information
   // For normal usage, this is the endpoint that your request is going.
