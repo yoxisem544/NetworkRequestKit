@@ -1,41 +1,31 @@
 PODS:
   - Alamofire (4.5.1)
-  - NetworkRequestKit (2.0.0-alpha.1):
+  - NetworkRequestKit (2.0.0):
     - Alamofire (~> 4.5)
     - PromiseKit (~> 4.4)
     - SwiftyJSON (~> 4.0.0-alpha)
-  - PromiseKit (4.4.0):
-    - PromiseKit/Foundation (= 4.4.0)
-    - PromiseKit/QuartzCore (= 4.4.0)
-    - PromiseKit/UIKit (= 4.4.0)
-  - PromiseKit/CorePromise (4.4.0)
-  - PromiseKit/Foundation (4.4.0):
+  - PromiseKit (4.4.3):
+    - PromiseKit/Foundation (= 4.4.3)
+    - PromiseKit/QuartzCore (= 4.4.3)
+    - PromiseKit/UIKit (= 4.4.3)
+  - PromiseKit/CorePromise (4.4.3)
+  - PromiseKit/Foundation (4.4.3):
     - PromiseKit/CorePromise
-  - PromiseKit/QuartzCore (4.4.0):
+  - PromiseKit/QuartzCore (4.4.3):
     - PromiseKit/CorePromise
-  - PromiseKit/UIKit (4.4.0):
+  - PromiseKit/UIKit (4.4.3):
     - PromiseKit/CorePromise
   - SwiftyJSON (4.0.0-alpha.1)
 
 DEPENDENCIES:
-  - NetworkRequestKit (from `https://github.com/yoxisem544/NetworkRequestKit`, tag `2.0.0-alpha.1`)
-
-EXTERNAL SOURCES:
-  NetworkRequestKit:
-    :git: https://github.com/yoxisem544/NetworkRequestKit
-    :tag: 2.0.0-alpha.1
-
-CHECKOUT OPTIONS:
-  NetworkRequestKit:
-    :git: https://github.com/yoxisem544/NetworkRequestKit
-    :tag: 2.0.0-alpha.1
+  - NetworkRequestKit (~> 2.0.0)
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
-  NetworkRequestKit: 9fa529be19eb36cb8841cdf32cff94be7c1dc1c7
-  PromiseKit: ecf5fe92275d57ee77c9ede858af47a162e9b97e
+  NetworkRequestKit: 330cbc5171cef6c40a07ca789c715032d232c6dc
+  PromiseKit: fbb52a0d154402c57eeb6eccd36dd7724fcf6117
   SwiftyJSON: dc88934f85fb50b263b1632b9cbad3402505783e
 
-PODFILE CHECKSUM: eba3ed427648fd21706b86bba182e42b263eaad5
+PODFILE CHECKSUM: a63f22728cbef29b2dcc4e5fed040b053eaff16a
 
 COCOAPODS: 1.2.1
