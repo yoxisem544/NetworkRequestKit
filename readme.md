@@ -15,7 +15,7 @@ There is a [artical](https://github.com/yoxisem544/Network-Evolution-Practice) e
 ## Installation
 Through [Cocoapods](https://cocoapods.org/pods/NetworkRequestKit)
 ```
-pod 'NetworkRequestKit', '~> 2.0.1'
+pod 'NetworkRequestKit', '~> 2.1.0'
 ```
 
 ## Dependencies
@@ -187,7 +187,7 @@ It will be like this, conform to `PagingEnabledRequest` protocol, then you have 
 
 `PagingResult` is a typealias of 
 ```swift
-typealias PagingResult = (results: [Decodable], nextPage: Int?)
+typealias PagingResult = (results: [Decodable], nextPage: NextPage)
 ```
 This is for conveneince, typing such a long return type may be easy to get wrong.
 
@@ -202,7 +202,7 @@ final public class FetchUsers : NetworkRequest, PagingEnabledRequest {
   public var page: Int = 1
   public func perform(page: Int) -> Promise<PagingResult> {
     self.page = page
-    return networkClient.performRequest(self).then(execute: arrayResponseHandler).then(execute: checkHasNextPage)
+    return networkClient.performRequest(self).then(execute: responseHandler).then(execute: checkHasNextPage)
   }
     
 }
