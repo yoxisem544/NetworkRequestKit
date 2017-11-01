@@ -22,7 +22,7 @@ final public class PagingRequest : NetworkRequest, PagingEnabledRequest {
   public var method: HTTPMethod { return .post }
   
   // get 7 objects per page.
-  public var perPage: Int { return 7 }
+  public var perPage: Int { return 20 }
   public var page: Int = 1
   
   // parameter here is passed to httpbin, then will be return by httpbin.

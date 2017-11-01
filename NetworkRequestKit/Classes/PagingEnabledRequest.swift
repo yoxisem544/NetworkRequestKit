@@ -9,9 +9,14 @@
 import Foundation
 import PromiseKit
 
+public enum NextPage {
+  case nextPage(Int)
+  case doesNotExist
+}
+
 public protocol PagingEnabledRequest {
   
-  typealias PagingResult = (results: [Decodable], nextPage: Int?)
+  typealias PagingResult = (results: [Decodable], nextPage: NextPage)
   
   /// Responses per page, default to 25.
   var perPage: Int { get }
@@ -22,17 +27,21 @@ public protocol PagingEnabledRequest {
 }
 
 extension PagingEnabledRequest where Self : NetworkRequest {
-    
+  
+  /// Default response per page is 25.
+  /// Overload this if you want more responses at once.
   public var perPage: Int { return 25 }
   
+  /// Parameters to tell backend which page and how much responses do you want.
   public var pagingParameters: [String : Any] { return ["page": page, "per_page": perPage] }
   
+  /// Helper function to check if there is more pages to fetch.
   public func checkHasNextPage<Response: Decodable>(results: [Response]) -> Promise<PagingResult> {
     if results.count < perPage {
       // no next page
-      return Promise(value: (results: results, nextPage: nil))
+      return Promise(value: (results: results, nextPage: .doesNotExist))
     } else {
-      return Promise(value: (results: results, nextPage: page + 1))
+      return Promise(value: (results: results, nextPage: .nextPage(page + 1)))
     }
   }
     
