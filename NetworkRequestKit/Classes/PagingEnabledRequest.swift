@@ -39,9 +39,9 @@ extension PagingEnabledRequest where Self : NetworkRequest {
   public func checkHasNextPage<Response: Decodable>(results: [Response]) -> Promise<PagingResult> {
     if results.count < perPage {
       // no next page
-      return Promise(value: (results: results, nextPage: .doesNotExist))
+      return Promise.value((results: results, nextPage: .doesNotExist))
     } else {
-      return Promise(value: (results: results, nextPage: .nextPage(page + 1)))
+      return Promise.value((results: results, nextPage: .nextPage(page + 1)))
     }
   }
     
