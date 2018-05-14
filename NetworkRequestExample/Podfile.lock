@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (4.5.1)
-  - NetworkRequestKit (2.0.0):
+  - NetworkRequestKit (2.1.0):
     - Alamofire (~> 4.5)
     - PromiseKit (~> 4.4)
     - SwiftyJSON (~> 4.0.0-alpha)
@@ -18,14 +18,14 @@ PODS:
   - SwiftyJSON (4.0.0-alpha.1)
 
 DEPENDENCIES:
-  - NetworkRequestKit (~> 2.0.0)
+  - NetworkRequestKit (~> 2.1.0)
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
-  NetworkRequestKit: 330cbc5171cef6c40a07ca789c715032d232c6dc
+  NetworkRequestKit: 569fbfaa13ddb22fd54c2711be37db51add14524
   PromiseKit: fbb52a0d154402c57eeb6eccd36dd7724fcf6117
   SwiftyJSON: dc88934f85fb50b263b1632b9cbad3402505783e
 
-PODFILE CHECKSUM: a63f22728cbef29b2dcc4e5fed040b053eaff16a
+PODFILE CHECKSUM: c9a76366452c71d9cd7ae09f00440c825c1ffd9e
 
 COCOAPODS: 1.2.1
