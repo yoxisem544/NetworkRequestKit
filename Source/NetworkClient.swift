@@ -18,7 +18,7 @@ public struct NetworkClient: NetworkClientType {
 	
 	public func performRequest<Request : NetworkRequest>(_ networkRequest: Request) -> Promise<Data> {
 		
-		let (promise, fulfill, reject) = Promise<Data>.pending()
+		let (promise, seal) = Promise<Data>.pending()
 		print("🔗", #function, "send request to url:", networkRequest.url)
     print("📩 method:", networkRequest.method)
     print("🚠 parameters:", networkRequest.parameters ?? [:])
@@ -30,12 +30,12 @@ public struct NetworkClient: NetworkClientType {
 		        headers: networkRequest.headers)
 			.validate().response { (response) in
 				if let data = response.data , response.error == nil {
-					fulfill(data)
+					seal.fulfill(data)
 				} else if let error = response.error, let data = response.data {
                     let e = AlamofireErrorHandler.handleNetworkRequestError(error, data: data, urlResponse: response.response)
-					reject(e)
+					seal.reject(e)
 				} else {
-					reject(NetworkRequestError.unknownError)
+					seal.reject(NetworkRequestError.unknownError)
 				}
 		}
 		

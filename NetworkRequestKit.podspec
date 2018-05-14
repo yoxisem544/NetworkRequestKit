@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'NetworkRequestKit'
-  s.version          = '2.1.0'
+  s.version          = '2.1.1'
   s.summary          = 'A fabulous way to handle network request.'
 
 # This description is used to generate tags and improve search results.
@@ -40,8 +40,8 @@ TODO: Add long description of the pod here.
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
 
-  s.dependency 'Alamofire', '~> 4.5'
-  s.dependency 'PromiseKit', '~> 4.4'
-  s.dependency 'SwiftyJSON', '~> 4.0.0-alpha'
+  s.dependency 'Alamofire', '~> 4'
+  s.dependency 'PromiseKit', '~> 6'
+  s.dependency 'SwiftyJSON', '~> 4'
 
 end
