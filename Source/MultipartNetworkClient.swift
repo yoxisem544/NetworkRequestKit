@@ -18,7 +18,7 @@ public struct MultipartNetworkClient : MultipartNetworkClientType {
     
   public func performMultipartRequest<Request : MultipartNetworkRequest>(_ networkRequest: Request) -> Promise<Data> {
       
-    let (promise, fulfill, reject) = Promise<Data>.pending()
+    let (promise, seal) = Promise<Data>.pending()
     
     upload(multipartFormData: { multipartFormData in
       multipartFormData.append(networkRequest.multipartUploadData,
@@ -30,16 +30,16 @@ public struct MultipartNetworkClient : MultipartNetworkClientType {
       case .success(request: let request, streamingFromDisk: _, streamFileURL: _):
         request.response(completionHandler: { (response) in
           if let data = response.data , response.error == nil {
-            fulfill(data)
+            seal.fulfill(data)
           } else if let error = response.error, let data = response.data {
             let e = AlamofireErrorHandler.handleNetworkRequestError(error, data: data, urlResponse: response.response)
-            reject(e)
+            seal.reject(e)
           } else {
-            reject(NetworkRequestError.unknownError)
+            seal.reject(NetworkRequestError.unknownError)
           }
         })
       case .failure(let error):
-          reject(error)
+          seal.reject(error)
       }
     }
     
