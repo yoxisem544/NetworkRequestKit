@@ -15,7 +15,7 @@ There is a [artical](https://github.com/yoxisem544/Network-Evolution-Practice) e
 ## Installation
 Through [Cocoapods](https://cocoapods.org/pods/NetworkRequestKit)
 ```
-pod 'NetworkRequestKit', '~> 2.1.0'
+pod 'NetworkRequestKit', '~> 2.1.2'
 ```
 
 ## Dependencies
