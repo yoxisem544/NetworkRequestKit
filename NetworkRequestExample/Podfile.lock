@@ -1,24 +1,22 @@
 PODS:
   - Alamofire (4.7.2)
-  - NetworkRequestKit (2.1.0):
-    - Alamofire (~> 4.5)
-    - PromiseKit (~> 4.4)
-    - SwiftyJSON (~> 4.0.0-alpha)
-  - PromiseKit (4.5.2):
-    - PromiseKit/Foundation (= 4.5.2)
-    - PromiseKit/QuartzCore (= 4.5.2)
-    - PromiseKit/UIKit (= 4.5.2)
-  - PromiseKit/CorePromise (4.5.2)
-  - PromiseKit/Foundation (4.5.2):
+  - NetworkRequestKit (2.2.0):
+    - Alamofire (~> 4)
+    - PromiseKit (~> 6)
+    - SwiftyJSON (~> 4)
+  - PromiseKit (6.2.7):
+    - PromiseKit/CorePromise (= 6.2.7)
+    - PromiseKit/Foundation (= 6.2.7)
+    - PromiseKit/UIKit (= 6.2.7)
+  - PromiseKit/CorePromise (6.2.7)
+  - PromiseKit/Foundation (6.2.7):
     - PromiseKit/CorePromise
-  - PromiseKit/QuartzCore (4.5.2):
+  - PromiseKit/UIKit (6.2.7):
     - PromiseKit/CorePromise
-  - PromiseKit/UIKit (4.5.2):
-    - PromiseKit/CorePromise
-  - SwiftyJSON (4.0.0)
+  - SwiftyJSON (4.1.0)
 
 DEPENDENCIES:
-  - NetworkRequestKit (~> 2.1.0)
+  - NetworkRequestKit (~> 2.2.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -29,10 +27,10 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
-  NetworkRequestKit: 569fbfaa13ddb22fd54c2711be37db51add14524
-  PromiseKit: 743e497a5f505a470d3bbbf4ce0663c1268af0a4
-  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
+  NetworkRequestKit: 624f231f9faf6d5a665b223c3de78d80a9d6ee6d
+  PromiseKit: 12b9d87748b170714247d8b2677146ca57e488f2
+  SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
 
-PODFILE CHECKSUM: c9a76366452c71d9cd7ae09f00440c825c1ffd9e
+PODFILE CHECKSUM: 39d37d2a9bd371110383361d3002e58a7539235f
 
 COCOAPODS: 1.5.2

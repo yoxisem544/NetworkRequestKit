@@ -27,7 +27,7 @@ final public class MultipartUpload : MultipartNetworkRequest {
   public var multipartUploadMimeType: String { return "img/jpeg" }
   
   public func perform() -> Promise<ResponseType> {
-    return networkClient.performMultipartRequest(self).then(execute: responseHandler)
+    return networkClient.performMultipartRequest(self).then(responseHandler)
   }
   
 }

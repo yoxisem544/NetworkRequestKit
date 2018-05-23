@@ -20,7 +20,7 @@ final public class MakeRequestThenIgnoreResult : NetworkRequest {
   public var parameters: [String : Any]? { return ["ignore": "this"] }
   
   public func perform() -> Promise<ResponseType> {
-    return networkClient.performRequest(self).then(execute: responseHandler)
+    return networkClient.performRequest(self).then(responseHandler)
   }
   
 }

@@ -41,13 +41,14 @@ final public class PagingRequest : NetworkRequest, PagingEnabledRequest {
   
   public func makeRequest(forPage page: Int) -> Promise<PagingResult> {
     self.page = page
-    
-    return networkClient.performRequest(self).then(execute: { data -> ResponseType in
-      let json = try JSON(data: data)["json"]["users"]
-      // array response hanlder can only parse json array.
-      // this is a transform.
-      return try self.responseHandler(json.rawData())
-    }).then(execute: checkHasNextPage)
+
+    return
+      networkClient.performRequest(self).then({ data -> Promise<PagingRequest.ResponseType> in
+        let json = try JSON(data: data)["json"]["users"]
+        // array response hanlder can only parse json array.
+        // this is a transform.
+        return try self.responseHandler(try json.rawData())
+      }).then(checkHasNextPage)
   }
   
 }

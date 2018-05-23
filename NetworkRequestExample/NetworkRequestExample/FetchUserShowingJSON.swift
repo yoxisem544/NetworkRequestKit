@@ -27,7 +27,7 @@ final public class FetchUserShowingJSON : NetworkRequest {
   }
   
   public func perform() -> Promise<ResponseType> {
-    return networkClient.performRequest(self).then(execute: responseHandler)
+    return networkClient.performRequest(self).then(responseHandler)
   }
   
 }

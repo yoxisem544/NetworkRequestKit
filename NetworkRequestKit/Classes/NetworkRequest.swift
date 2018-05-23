@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import PromiseKit
 
 /// NetworkRequestError
 ///
@@ -46,7 +47,7 @@ public protocol NetworkRequest {
 	var endpoint: String { get }
   
 	/// Will transform given data to requested type of response.
-	var responseHandler: (Data) throws -> ResponseType { get }
+	var responseHandler: (Data) throws -> Promise<ResponseType> { get }
 	
 	// MARK: Optional
 	/// An url pointing to your service.
@@ -84,36 +85,40 @@ public extension NetworkRequest {
 
 // MARK: - Codable extension
 extension NetworkRequest where ResponseType: Decodable {
-  public var responseHandler: (Data) throws -> ResponseType { return decodableResponseHandler }
+  public var responseHandler: (Data) throws -> Promise<ResponseType> { return decodableResponseHandler }
 }
 
-private func decodableResponseHandler<Response: Decodable>(_ data: Data) throws -> Response {
-  let jsonDecoder = JSONDecoder()
-  do {
-    return try jsonDecoder.decode(Response.self, from: data)
-  } catch let e as DecodingError {
-    throw NetworkRequestError.decodingError(error: e)
+private func decodableResponseHandler<Response: Decodable>(_ data: Data) throws -> Promise<Response> {
+  return Promise { seal in
+    let jsonDecoder = JSONDecoder()
+    do {
+      seal.fulfill(try jsonDecoder.decode(Response.self, from: data))
+    } catch let e as DecodingError {
+      seal.reject(NetworkRequestError.decodingError(error: e))
+    }
   }
 }
 
 // MARK: - Ignorable Result extesion aka Void, ()
 extension NetworkRequest where ResponseType == IgnorableResult {
-	public var responseHandler: (Data) throws -> ResponseType { return ignorableResponseHandler }
+	public var responseHandler: (Data) throws -> Promise<ResponseType> { return ignorableResponseHandler }
 }
 
-private func ignorableResponseHandler(_ data: Data) throws -> IgnorableResult {
-  return IgnorableResult()
+private func ignorableResponseHandler(_ data: Data) throws -> Promise<IgnorableResult> {
+  return Promise.value(IgnorableResult())
 }
 
 // MARK: - SwifyJSON extension
 extension NetworkRequest where ResponseType == RawJSONResult {
-  public var responseHandler: (Data) throws -> ResponseType { return rawJSONResponseHandler }
+  public var responseHandler: (Data) throws -> Promise<ResponseType> { return rawJSONResponseHandler }
 }
 
-private func rawJSONResponseHandler(_ data: Data) throws -> RawJSONResult {
-  do {
-    return try JSON(data: data)
-  } catch let e {
-    throw NetworkRequestError.jsonParsingError(error: e)
+private func rawJSONResponseHandler(_ data: Data) throws -> Promise<RawJSONResult> {
+  return Promise { seal in
+    do {
+      seal.fulfill(try JSON(data: data))
+    } catch let e {
+      seal.reject(NetworkRequestError.jsonParsingError(error: e))
+    }
   }
 }
