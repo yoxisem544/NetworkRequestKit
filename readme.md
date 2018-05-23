@@ -98,7 +98,7 @@ final public class FetchUser : NetworkRequest {
   public var method: HTTPMethod { return .get }
 	
   public func perform() -> Promise<ResonseType> {
-    return networkClient.performRequest(self).then(execute: responseHandler)
+    return networkClient.performRequest(self).then(responseHandler)
   }
 }
 ```
@@ -121,7 +121,7 @@ final public class FetchUser : NetworkRequest {
   private id: Int = 0
   public func perform(id: Int) -> Promise<ResonseType> {
     self.id = id
-    return networkClient.performRequest(self).then(execute: responseHandler)
+    return networkClient.performRequest(self).then(responseHandler)
   }
 }
 ```
@@ -143,7 +143,7 @@ final public class FetchUser : NetworkRequest {
   public var method: HTTPMethod { return .get }
 	
   public func perform() -> Promise<ResonseType> {
-    return networkClient.performRequest(self).then(execute: responseHandler)
+    return networkClient.performRequest(self).then(responseHandler)
   }
 }
 ```
@@ -159,7 +159,7 @@ final public class FetchUsers : NetworkRequest {
   public var method: HTTPMethod { return .get }
 	
   public func perform() -> Promise<ResonseType> {
-    return networkClient.performRequest(self).then(execute: responseHandler)
+    return networkClient.performRequest(self).then(responseHandler)
   }
 }
 ```
@@ -175,7 +175,7 @@ final public class FetchUsers : NetworkRequest {
   public var method: HTTPMethod { return .get }
 	
   public func perform() -> Promise<[ResonseType]> {
-    return networkClient.performRequest(self).then(execute: responseHandler)
+    return networkClient.performRequest(self).then(responseHandler)
   }
 }
 ```
@@ -202,7 +202,7 @@ final public class FetchUsers : NetworkRequest, PagingEnabledRequest {
   public var page: Int = 1
   public func perform(page: Int) -> Promise<PagingResult> {
     self.page = page
-    return networkClient.performRequest(self).then(execute: responseHandler).then(execute: checkHasNextPage)
+    return networkClient.performRequest(self).then(responseHandler).then(checkHasNextPage)
   }
     
 }
@@ -252,7 +252,7 @@ final public class UploadTask : MultipartNetworkRequest {
   private var data: Data!
   func perform(avatarData: Data) -> Promise<ResponseType> {
   self.data = avatarData
-    return networkClient.performUploadRequest(self).then(execute: responseHandler)
+    return networkClient.performUploadRequest(self).then(responseHandler)
   }
 }
 ```
